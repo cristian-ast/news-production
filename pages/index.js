@@ -3,19 +3,22 @@ import Container from '../components/Container';
 import Head from 'next/head';
 import axiosClient from '../config/axios';
 import News from '../components/News';
+import Processing from '../components/Processing';
 
 export default function Home() {
 
+  const [ loading, setLoading ] = useState(true);
   const [ data, setData ] = useState([]);
 
   const SearchData = async () => {
     try {
       const respuesta = await axiosClient.get('/api/noticias/recientes/');
       setData(respuesta.data);
-        
+      setLoading(false);
     } catch (error) {
       console.log(error);
       setData([]);
+      setLoading(false);
     }
   }
 
@@ -57,7 +60,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <News data = {data} tipo="inicio"/>
+            { loading ? <Processing processText={"Loading..."}/> : <News data = {data} tipo="inicio"/>}
           </div>
         </div>
       </div>

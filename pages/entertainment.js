@@ -3,9 +3,10 @@ import Container from '../components/Container';
 import Head from 'next/head';
 import axiosClient from '../config/axios';
 import News from '../components/News';
+import Processing from '../components/Processing';
 
 const Entertainment = () => {
-
+    const [ loading, setLoading ] = useState(true);
     const [ data, setData ] = useState([]);
 
     const SearchTheNews = async () => {
@@ -16,10 +17,11 @@ const Entertainment = () => {
 
         const respuesta = await axiosClient.post('/api/noticias/tipo/', datos);
         setData(respuesta.data);
-          
+        setLoading(false);
       } catch (error) {
         console.log(error);
         setData([]);
+        setLoading(false);
       }
     }
 
@@ -50,7 +52,7 @@ const Entertainment = () => {
           <div className="inicio">
             <div className="sub-inicio">
                 <div className="sub-cuerpo">
-                    <News data = {data} tipo="Entertainment"/>
+                  { loading ? <Processing processText={"Loading..."}/> : <News data = {data} tipo="Entertainment"/> }
                 </div>
             </div>
           </div>
