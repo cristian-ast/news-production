@@ -42,11 +42,11 @@ const Justice = () => {
             <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet" />
             {/*Open Graph / Facebook*/}
             <meta property="og:title" content="Somos SFM"/>
-            <meta property="og:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+            <meta property="og:description" content="This is a Web application about the news. If you want to upload news you only have to create an account and get started."/>
             <meta property="og:image" content="/img/logo.png"></meta>
             {/* Twitter */}
             <meta property="twitter:title" content="Somos SFM"/>
-            <meta property="twitter:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana"/>
+            <meta property="twitter:description" content="This is a Web application about the news. If you want to upload news you only have to create an account and get started."/>
             <meta property="twitter:image" content="/img/logo.png"></meta>
         </Head>
           <div className="inicio">
