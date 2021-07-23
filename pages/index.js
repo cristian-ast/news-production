@@ -4,6 +4,7 @@ import Head from 'next/head';
 import axiosClient from '../config/axios';
 import News from '../components/News';
 import Processing from '../components/Processing';
+import Image from 'next/image';
 
 export default function Home() {
 
@@ -51,7 +52,7 @@ export default function Home() {
           <div className="portada">
             <br/>
             <div className="contenido">
-              <img src="/img/coverPage.jpg" className="imglogo" alt="logo"/>
+              <Image width={900} height={600} src="/img/coverPage.jpg" className="imglogo" alt="logo"/>
             </div>
             <div className="contenerdorTextos">
               <div className="textos">

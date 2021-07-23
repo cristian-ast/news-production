@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Head from 'next/head';
 import copy from 'copy-to-clipboard';
 import axiosClient from '../../config/axios';
+import Image from 'next/image';
 
 const NewsPage = ({data}) => {
 
@@ -58,7 +59,7 @@ const NewsPage = ({data}) => {
                       {data.video == "null"
                       ?
                         (
-                          <img className="cuerpo--noticias--imagen" src={data.img} alt="imagen" />
+                          <Image width={1000} height={562} src={data.img} alt="imagen" />
                         )
                       :
                         (

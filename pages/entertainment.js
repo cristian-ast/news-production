@@ -4,7 +4,6 @@ import Head from 'next/head';
 import axiosClient from '../config/axios';
 import News from '../components/News';
 import Processing from '../components/Processing';
-
 const Entertainment = () => {
     const [ loading, setLoading ] = useState(true);
     const [ data, setData ] = useState([]);
