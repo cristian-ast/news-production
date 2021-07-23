@@ -94,6 +94,49 @@ a {
   display: none;
 }
 
+.navbarAuth {
+    position: fixed;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #2196f3;
+    width: 100%;
+    -webkit-box-shadow: 10px 10px 22px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 22px -15px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 22px -15px rgba(0,0,0,0.75); display: flex;
+}
+
+.navbarAuth--nombre {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.navbarAuth--boton {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  cursor: pointer;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.navbarAuth--boton:hover {
+  color: rgb(0, 0, 0);
+}
+
+.navbarAuth--boton > p {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
 .logoUsuario {
   width: 25px;
 }
@@ -200,7 +243,10 @@ a {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 70px;
+}
+
+.mtop {
+  margin-top: 60px;
 }
 
 .sub-cuerpo > h3 {
@@ -367,6 +413,7 @@ a {
   flex-wrap: wrap;
   width: 65%;
 }
+
 .contador {
   display: none;
 }
@@ -529,10 +576,8 @@ a {
 .form-usuario {
   width: 90%;
   max-width: 400px;
-  background-color: #f8f1f1;
   border-radius: 15px;
   margin-top: 40px;
-  border: 1px solid black;
   -webkit-box-shadow: 10px 10px 22px -15px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 22px -15px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 22px -15px rgba(0,0,0,0.75);
@@ -754,7 +799,7 @@ a {
 .mostrarAlerta {
   padding: 10px;
   font-weight: bolder;
-  color: red;
+  color: rgb(170, 100, 100);
 }
 
 .contenedor-info-noticia-cuerpo-opciones {
@@ -781,5 +826,9 @@ a {
   color: white;
 }
 
-.alerta-email {
+.Contenedor-Procesando {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
 }

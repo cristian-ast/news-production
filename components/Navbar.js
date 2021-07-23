@@ -1,7 +1,5 @@
 import React from 'react';
-
 import Link from 'next/link';
-
 import { makeStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -114,7 +112,7 @@ const Navbar = (props) => {
           <p>|</p> 
         </div>
 
-        <Link href="/myAccount">
+        <Link href="/login">
           <div className="navbar--computadoras--boton">
             <PersonIcon style={{ fontSize: 20 }} /> <p>My account</p> 
           </div>

@@ -54,7 +54,7 @@ const NavDrawer = () => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <Link href="/myAccount">
+      <Link href="/login">
         <ListItem button>
           <ListItemIcon>
             <PersonIcon/>
