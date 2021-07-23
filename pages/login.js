@@ -115,7 +115,7 @@ const LogIn = (props) => {
             localStorage.setItem('usuAuth', true);
 
             setTimeout(() => {
-                Router.push('/controPanel');
+                Router.push('/menu');
             }, 1000);
 
         } catch (error) {

@@ -19,22 +19,15 @@ const SignUp = (props) => {
     // // eslint-disable-next-line
     // }, []);
 
-    
-
-    // State para iniciar sesión
     const [usuario, guardarUsuario] = useState({
+        nombre: '',
         email: '',
-        password: ''
+        password: '',
+        repetir: ''
     });
 
     // extraer de usuario
-    const { email, password } = usuario;
-
-    // state de las alertas
-    const [mostrarAlerta, guardarMostrarAlerta] = useState({
-        mostrar: false,
-        description : "Todos los campos son obligatorios"
-    });
+    const { nombre, email, password, repetir } = usuario;
 
     const onChange = e => {
         guardarUsuario({
@@ -43,12 +36,18 @@ const SignUp = (props) => {
         })
     }
 
+    // state de las alertas
+    const [mostrarAlerta, guardarMostrarAlerta] = useState({
+        mostrar: false,
+        description : "Todos los campos son obligatorios"
+    });
+
     // Cuando el usuario quiere iniciar sesión
     const onSubmit = e => {
         e.preventDefault();
 
         // Validar que no haya campos vacios
-        if(email.trim() === '' || password.trim() === '') {
+        if( nombre.trim() === '' || email.trim() === '' || password.trim() === '' || repetir.trim() === '') {
             
             guardarMostrarAlerta({
                 ...mostrarAlerta,
@@ -68,7 +67,7 @@ const SignUp = (props) => {
         }
 
         // Validar que las contraseñas sean minino de 6 caracteres
-        if(password.length < 6) {
+        if(password.length < 6 || repetir.length < 6 ) {
             
             guardarMostrarAlerta({
                 ...mostrarAlerta,
@@ -83,7 +82,27 @@ const SignUp = (props) => {
                 });
 
             }, 5000);
+
+            return;
+        }
+
+        // Validar que las contraseñas sean iguales
+        if(!(password === repetir) ){
             
+            guardarMostrarAlerta({
+                ...mostrarAlerta,
+                description : "La contraseña debe ser iguales en ambos campos",
+                mostrar: true
+            });
+
+            setTimeout(() => {
+              guardarMostrarAlerta({
+                ...mostrarAlerta,
+                mostrar: false,
+                });
+
+            }, 5000);
+
             return;
         }
 
@@ -94,28 +113,30 @@ const SignUp = (props) => {
         }
 
         // registras nuevo usuario
-        iniciarSecion(datos);
+        registrarUsuario(datos);
+
     }
 
-    const iniciarSecion = async datos => {
-    
+    const registrarUsuario = async datos => {
+
         setLoading(true);
-    
+
         try {
-            const respuesta = await axiosBackendCliente.post('/api/auth', datos);
-            localStorage.setItem('token', respuesta.data.token);
+            const respuesta = await axiosBackendCliente.post('/api/usuarios', datos);
+
+            // localStorage.setItem('token', respuesta.data.token);
             // GuardarAuth({
             //     ...Auth,
             //     autenticado: true
             // })
 
-            setProcessText("Ha iniciado sesión exitosamente");
+            setProcessText("Usuario Creado Exitosamente");
 
             // usuarioAutenticado();
-            localStorage.setItem('usuAuth', true);
+            // localStorage.setItem('usuAuth', true);
 
             setTimeout(() => {
-                Router.push('/controPanel');
+                Router.push('/menu');
             }, 1000);
 
         } catch (error) {
@@ -126,24 +147,10 @@ const SignUp = (props) => {
                 setProcessText("Error, intentalo de nuevo");
             }
 
-            // GuardarAuth({
-            //     ...Auth,
-            //     token: null,
-            //     autenticado: null
-            // })
-            localStorage.removeItem('token');
-            localStorage.removeItem('nombre');
-            localStorage.removeItem('email');
-            // guardarUsuario({
-            //     email: '',
-            //     password: ''
-            // })
-            localStorage.removeItem('usuAuth');
             setTimeout(() => {
-                setLoading(false);
+                Router.push('/signup');
             }, 1000);
-         
-        }    
+        }
     }
 
     return (
@@ -162,9 +169,9 @@ const SignUp = (props) => {
                                     <div className="campo-form">
                                         <label htmlFor="email">Name</label>
                                         <input
-                                            type="email"
-                                            id="name"
-                                            name="name"
+                                            type="text"
+                                            id="nombre"
+                                            name="nombre"
                                             placeholder="Enter your name"
                                             onChange={onChange}
                                             required
@@ -193,11 +200,11 @@ const SignUp = (props) => {
                                         />
                                     </div>
                                     <div className="campo-form">
-                                        <label htmlFor="email">Repeat Password</label>
+                                        <label htmlFor="repetir">Repeat Password</label>
                                         <input
                                             type="password"
-                                            id="repeatPassword"
-                                            name="repeatPassword"
+                                            id="repetir"
+                                            name="repetir"
                                             placeholder="Enter your password again"
                                             onChange={onChange}
                                             required

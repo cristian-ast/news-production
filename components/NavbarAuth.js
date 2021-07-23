@@ -17,7 +17,7 @@ const NavbarAuth = (props) => {
           </div>
         </Link>
         
-        <Link href="/recent">
+        <Link href="/">
           <div className="navbarAuth--boton" >
             <ExitToAppIcon style={{ fontSize: 20 }} /> <p>Log out</p> 
           </div>

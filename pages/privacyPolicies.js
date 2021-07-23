@@ -26,6 +26,7 @@ const PrivacyPolicies = () => {
                 <div className="sub-inicio">
                     <div className="sub-cuerpo">
                         <div className="politicaDePrivacidad">
+                            <br/><br/>
                             <h3>Privacy Policy of Cristian Castro Astacio</h3>
 
                             <p>Cristian Castro Astacio operates the news.cristiancastroastacio.com website, which provides the SERVICE.</p>
