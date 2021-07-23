@@ -63,7 +63,7 @@ const NewsPage = ({data}) => {
                         )
                       :
                         (
-                          <iframe className="cuerpo--noticias--video" src={data.video} frameborder="0" ></iframe>
+                          <iframe className="cuerpo--noticias--video" src={data.video} frameBorder="0" ></iframe>
                         )
                       }
                       <div className="cuerpo--noticias--titulo__fecha">
