@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import New from './new';
+import New from './New';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 const News = ({data, tipo}) => {
