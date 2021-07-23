@@ -4,6 +4,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Link from 'next/link';
+import Image from 'next/image';
+import bigUser from '../public/img/bigUser.png';
 
 const ContenedorMuenu = ({nombre, email}) => {
     return (
@@ -11,7 +13,7 @@ const ContenedorMuenu = ({nombre, email}) => {
             <div className="contenedor-panel-editor-menu-opciones">
                 <div className="contenedor-perfil">
                     <div className="contenedor-perfil-img">
-                        <img src="img/bigUser.png" alt="Foto de Usuario"/>
+                        <Image width={100} height={100} src={bigUser} alt="Foto de Usuario"/>
                     </div>
                     <div className="contenedor-perfil-descripcion">
                         {nombre ? 

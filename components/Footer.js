@@ -1,5 +1,9 @@
 import React from 'react';
 import ContactForm from './ContactForm';
+import Image from 'next/image';
+import instagram from '../public/img/instagram.png';
+import gmail from '../public/img/gmail.png';
+import whatsapp from '../public/img/whatsapp.png';
 
 const Footer = () => {
     return (
@@ -10,17 +14,17 @@ const Footer = () => {
                     <div className="contenidoFooter">
                         <div className="redes">
                             <a href="https://www.instagram.com/cristian.ast/" target="_blank" rel="noreferrer">
-                                <img src="http://localhost:3000/img/instagram.png"alt="Facebook" />Instagram
+                                <Image width={24} height={24} src={instagram} alt="Instagram" />Instagram
                             </a>
                         </div>
                         <div className="redes">
                             <a href="mailto:cristiancastroastacio@gmail.com" target="_blank" rel="noreferrer">
-                                <img src="http://localhost:3000/img/gmail.png" alt="Gmail" /> Gmail
+                                <Image width={24} height={24} src={gmail} alt="Gmail" /> Gmail
                             </a>
                         </div>
                         <div className="redes">
                             <a href="https://api.whatsapp.com/send?phone=18094289886&text=Buenas" target="_blank" rel="noreferrer">
-                                <img src="http://localhost:3000/img/whatsapp.png" alt="Whatsapp" /> +1-809-428-9886
+                                <Image width={24} height={24} src={whatsapp} alt="Whatsapp" /> +1-809-428-9886
                             </a>
                         </div>
                     </div>
