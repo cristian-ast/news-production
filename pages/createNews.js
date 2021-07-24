@@ -186,7 +186,7 @@ const CreateNews = (props) => {
                                         name="titulo"
                                         placeholder="Write the news' title..."
                                         onChange={onChange}
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         required
                                     />
                                 </div>
