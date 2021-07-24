@@ -169,7 +169,7 @@ const CreateNews = (props) => {
 
     return (
         <ContainerForAuth>
-            {mostrarInfoNoticia ? (<InfoNoticia nuevaNoticia={nuevaNoticia}/>) : <Fragment>
+            {/* {mostrarInfoNoticia ? (<InfoNoticia nuevaNoticia={nuevaNoticia}/>) : <Fragment> */}
                 { loading ? (<Processing processText={processText} />) : 
                     <div className="editor-noticias" >
                         <div className="contenedor-editor">
@@ -321,7 +321,8 @@ const CreateNews = (props) => {
                         </form>
                     </div>
                 </div>
-            }</Fragment>}
+            }
+            {/* </Fragment>} */}
         </ContainerForAuth>
     );
 }
