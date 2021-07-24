@@ -34,7 +34,7 @@ const ContenedorMuenu = ({nombre, email}) => {
                     </div>
                 </div>
                 <h3>Menu</h3>
-                <Link href="/CrearNoticia">
+                <Link href="/createNews">
                     <Button
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
                         size="small"
@@ -54,7 +54,7 @@ const ContenedorMuenu = ({nombre, email}) => {
                         color="primary"
                         startIcon={<EditIcon />}
                     >
-                        edit a news
+                        Edit a news
                     </Button>  
                 </Link>
                 <br/>
@@ -69,8 +69,6 @@ const ContenedorMuenu = ({nombre, email}) => {
                         Delete my account
                     </Button>  
                 </Link>
-                
-                
             </div>    
         </div>
     );

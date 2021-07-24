@@ -706,18 +706,16 @@ a {
   font-size: 13px;
 }
 
-/*Editor de las noticias*/
 .editor-noticias{
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 60px;
   display: flex;
   height: 100%;
 }
 
 .contenedor-editor {
-  margin-top: 10px;
+  margin-top: 60px;
   padding: 20px;
   width: 100%;
   max-width: 530px;
