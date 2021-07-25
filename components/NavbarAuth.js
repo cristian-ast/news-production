@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
+import { AuthContext } from '../context/AuthContext';
+import Router from 'next/router';
+import Button from '@material-ui/core/Button';
 
-const NavbarAuth = (props) => {
+const NavbarAuth = () => {
+
+  const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
+
+  const logOut = () => {
+    
+    GuardarAuth({
+      token: null,
+      autenticado: false
+    });
+
+    localStorage.removeItem('token');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('email');
+
+    Router.push('/');
+  }
+
   return (
     <div>
       <div className="navbarAuth">
@@ -17,13 +37,21 @@ const NavbarAuth = (props) => {
           </div>
         </Link>
         
-        <Link href="/">
+        {Auth.autenticado ? (
           <div className="navbarAuth--boton" >
-            <ExitToAppIcon style={{ fontSize: 20 }} /> <p>Log out</p> 
+            <Button
+                className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
+                size="small"
+                variant="contained"
+                color="secondary"
+                onClick={() => logOut()}
+                startIcon={<ExitToAppIcon />}
+            >
+                Log out
+            </Button>
           </div>
-        </Link>
-      
-        </div>
+        ) : null}
+      </div>
     </div>
   )
 }

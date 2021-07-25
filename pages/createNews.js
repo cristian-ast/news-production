@@ -10,10 +10,6 @@ import ContainerForAuth from '../components/ContainerForAuth';
 import Router from 'next/router';
 import VistaPreviavideo from '../components/VistaPreviavideo';
 
-// import CuerpoNoticia from './layout/CuerpoNoticia';
-// import InfoNoticia from './layout/InfoNoticia';
-// import SinImagen from './img/SinImagen.jpg';
-
 const CreateNews = (props) => {
 
     const [ mostrarInfoNoticia, guardarInfoNoticia ] = useState(false);
@@ -70,15 +66,6 @@ const CreateNews = (props) => {
         }
     // eslint-disable-next-line
     }, [siVideo]);
-
-    const CambiaMostraSpinnerEnCuerpoNoticia = () => {
-        GmostraSpinnerEnCuerpoNoticia(true);
-        setTimeout(volverAFalso, 800);
-    }
-
-    const volverAFalso = () => {
-        GmostraSpinnerEnCuerpoNoticia(false);
-    }
     
     const  [mostraSpinnerEnVideo, GmostraSpinnerEnVideo ] = useState(false);
 
@@ -132,7 +119,7 @@ const CreateNews = (props) => {
     }
 
     const volverAlMenu = () => {
-        props.history.push('/');
+        Router.push('/menu');
     }
     
     const onSubmit = e => {

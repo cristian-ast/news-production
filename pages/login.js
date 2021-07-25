@@ -1,4 +1,5 @@
 import  React, { useState, useContext, Fragment, useEffect } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { axiosBackendCliente } from '../config/axios';
 import Processing from '../components/Processing';
 import Router from 'next/router';
@@ -12,14 +13,15 @@ const LogIn = (props) => {
     const [ loading, setLoading ] = useState(false);
     const [ processText, setProcessText ] = useState("Loading...");
 
-    // const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
+    const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
 
-    // useEffect(() => {        
-    //     usuarioAutenticado();
-    // // eslint-disable-next-line
-    // }, []);
-
-    
+    useEffect(() => {        
+        usuarioAutenticado();
+        if(Auth.autenticado) {
+            Router.push('/menu');
+        }
+    // eslint-disable-next-line
+    }, []);
 
     // State para iniciar sesión
     const [usuario, guardarUsuario] = useState({
@@ -88,7 +90,6 @@ const LogIn = (props) => {
         }
 
         const datos = {
-            nombre: usuario.nombre,
             email: usuario.email,
             password: usuario.password,
         }
@@ -98,21 +99,20 @@ const LogIn = (props) => {
     }
 
     const iniciarSecion = async datos => {
-    
         setLoading(true);
-    
+
         try {
             const respuesta = await axiosBackendCliente.post('/api/auth', datos);
             localStorage.setItem('token', respuesta.data.token);
-            // GuardarAuth({
-            //     ...Auth,
-            //     autenticado: true
-            // })
+            
+            GuardarAuth({
+                toke: respuesta.data.token,
+                autenticado: true
+            })
 
-            setProcessText("Ha iniciado sesión exitosamente");
+            usuarioAutenticado();
 
-            // usuarioAutenticado();
-            localStorage.setItem('usuAuth', true);
+            setProcessText("You have successfully logged in.");
 
             setTimeout(() => {
                 Router.push('/menu');
@@ -123,22 +123,23 @@ const LogIn = (props) => {
             if(error.response.data.msg) {
                 setProcessText(error.response.data.msg);
             } else {
-                setProcessText("Error, intentalo de nuevo");
+                setProcessText("Error, try again.");
             }
 
-            // GuardarAuth({
-            //     ...Auth,
-            //     token: null,
-            //     autenticado: null
-            // })
+            GuardarAuth({
+                token: null,
+                autenticado: null
+            });
+
             localStorage.removeItem('token');
             localStorage.removeItem('nombre');
             localStorage.removeItem('email');
-            // guardarUsuario({
-            //     email: '',
-            //     password: ''
-            // })
-            localStorage.removeItem('usuAuth');
+
+            guardarUsuario({
+                email: '',
+                password: ''
+            });
+            
             setTimeout(() => {
                 setLoading(false);
             }, 1000);
