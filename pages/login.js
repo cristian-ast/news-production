@@ -8,20 +8,20 @@ import Button from '@material-ui/core/Button';
 import LaunchIcon from '@material-ui/icons/Launch';
 import Link from 'next/link';
 
-const LogIn = (props) => {
+const LogIn = () => {
     
     const [ loading, setLoading ] = useState(false);
     const [ processText, setProcessText ] = useState("Loading...");
 
     const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
 
-    useEffect(() => {        
-        usuarioAutenticado();
-        if(Auth.autenticado) {
-            Router.push('/menu');
-        }
-    // eslint-disable-next-line
-    }, []);
+    // useEffect(() => {        
+    //     usuarioAutenticado();
+    //     if(Auth.autenticado) {
+    //         Router.push('/menu');
+    //     }
+    // // eslint-disable-next-line
+    // }, []);
 
     // State para iniciar sesión
     const [usuario, guardarUsuario] = useState({

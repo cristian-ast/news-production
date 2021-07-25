@@ -6,13 +6,14 @@ import ContainerForAuth from '../components/ContainerForAuth';
 import Button from '@material-ui/core/Button';
 import LaunchIcon from '@material-ui/icons/Launch';
 import Link from 'next/link';
+import { AuthContext } from '../context/AuthContext';
 
 const SignUp = (props) => {
     
     const [ loading, setLoading ] = useState(false);
     const [ processText, setProcessText ] = useState("Loading...");
 
-    // const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
+    const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
 
     // useEffect(() => {        
     //     usuarioAutenticado();
@@ -124,16 +125,15 @@ const SignUp = (props) => {
         try {
             const respuesta = await axiosBackendCliente.post('/api/usuarios', datos);
 
-            // localStorage.setItem('token', respuesta.data.token);
-            // GuardarAuth({
-            //     ...Auth,
-            //     autenticado: true
-            // })
+            localStorage.setItem('token', respuesta.data.token);
+            GuardarAuth({
+                toke: respuesta.data.token,
+                autenticado: true
+            })
 
             setProcessText("Usuario Creado Exitosamente");
 
-            // usuarioAutenticado();
-            // localStorage.setItem('usuAuth', true);
+            usuarioAutenticado();
 
             setTimeout(() => {
                 Router.push('/menu');

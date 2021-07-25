@@ -19,14 +19,11 @@ const Menu = () => {
 
     useEffect(() => {        
         usuarioAutenticado();
-
         setUserInf({
             name: localStorage.getItem('nombre'),
             email: localStorage.getItem('email')
         });
-
         setLoading(false);
-
     // eslint-disable-next-line
     }, []);
     

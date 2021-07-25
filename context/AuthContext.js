@@ -1,7 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { axiosBackendCliente } from '../config/axios';
 import tokenAuth from '../config/token';
-import Router from 'next/router';
 
 // crear el Contex
 export const AuthContext = createContext();
@@ -16,8 +15,6 @@ const AuthProvider = (props) => {
     });
 
     const usuarioAutenticado = async () => {
-
-        console.log("Revisando...");
 
         const token = localStorage.getItem('token');
 
@@ -39,8 +36,6 @@ const AuthProvider = (props) => {
                 autenticado : true
             });
 
-            console.log("La seccion esta abierta");
-
         } catch (error) {
             localStorage.removeItem('token');
             localStorage.removeItem('nombre');
@@ -50,9 +45,6 @@ const AuthProvider = (props) => {
                 token : null,
                 autenticado : false
             });
-
-            Router.push('/login');
-            console.log("No hay seccion abierta");
         }
     }
 

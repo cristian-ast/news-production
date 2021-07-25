@@ -9,6 +9,7 @@ import Image from 'next/image';
 import ContainerForAuth from '../components/ContainerForAuth';
 import Router from 'next/router';
 import VistaPreviavideo from '../components/VistaPreviavideo';
+import TextEditor from '../components/TextEditor';
 
 const CreateNews = (props) => {
 
@@ -231,13 +232,16 @@ const CreateNews = (props) => {
 
                                     <br/>
                                 </div>
+                              
+                                
+                                <div className="panel-editor-campos">
+                                    <label>Write the news' content :</label>
+                                    <br/><br/>
+                                    <TextEditor/>
+                                    <br/><br/>
+                                </div>
+                                
                                 <hr/>
-
-                                {/* <CuerpoNoticia
-                                    onChangeCuerpo={onChangeCuerpo}
-                                    nCuerpo={nCuerpo.canParr}
-                                /> */}
-
                                 <div className="panel-editor-campos">
                                     <label htmlFor="tipo">Video : </label>
                                     <select 
