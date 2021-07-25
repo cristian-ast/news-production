@@ -235,7 +235,7 @@ const CreateNews = (props) => {
                               
                                 
                                 <div className="panel-editor-campos">
-                                    <label>Write the news' content :</label>
+                                    <label>Write the news&#39; content :</label>
                                     <br/><br/>
                                     <TextEditor/>
                                     <br/><br/>
