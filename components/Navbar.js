@@ -53,20 +53,15 @@ const Navbar = (props) => {
         </div>
       
       <div className="navbar--computadoras">
-
-        <div className="navbar--computadoras--nombre">
-          <p>News</p>
-        </div>
+        <Link href="/">
+          <div className="navbar--computadoras--nombre navbarAuth--nombre__botton">
+            <p>News</p>
+          </div>
+        </Link> 
 
         <div className="navbar--computadoras--division">
           <p>|</p> 
         </div>
-
-        <Link href="/">
-          <div className="navbar--computadoras--boton">
-              <HomeIcon style={{ fontSize: 20 }}/> <p>Home</p> 
-          </div>
-        </Link>
         
         <Link href="/recent">
           <div className="navbar--computadoras--boton" >
