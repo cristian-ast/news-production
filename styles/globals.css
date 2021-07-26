@@ -96,7 +96,7 @@ a {
 
 .navbarAuth {
     position: fixed;
-    z-index: 3;
+    z-index: 6;
     display: flex;
     align-items: center;
     justify-content: space-around;

@@ -6,14 +6,20 @@ const SunEditor = dynamic(() => import("suneditor-react"), {
   ssr: false,
 });
 
-const handleChange = (content) => {
-	console.log(content); //Get Content Inside Editor
-}
+const TextEditor = ({setNewsContent}) => {
 
-const TextEditor = props => {
+  const handleChange = (content) => {
+    setNewsContent(content);
+  }
+
   return (
     <div>
-      <SunEditor onChange={handleChange} setDefaultStyle="font-size: 14px;" />
+      <SunEditor 
+        onChange={handleChange} 
+        setDefaultStyle="font-size: 16px;" 
+        setOptions={{height: 350}}
+        placeholder="Please type here..."
+      />
     </div>
   );
 };

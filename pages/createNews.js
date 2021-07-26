@@ -17,6 +17,12 @@ const CreateNews = (props) => {
 
     const [ loading, setLoading ] = useState(false);
     const [ processText, setProcessText ] = useState("Loading...");
+    const [ newsContent, setNewsContent ] = useState("");
+    // state de las alertas
+    const [mostrarAlerta, guardarMostrarAlerta] = useState({
+        mostrar: false,
+        description : "Each field is required."
+    });
 
     const [nuevaNoticia, guardarNuevaNoticia] = useState({
         titulo : "",
@@ -24,20 +30,23 @@ const CreateNews = (props) => {
         tipo : "",
         img : "",
         video : "null",
-        cuerpo : [
-            "",
-            "",
-            ""
-        ]
+        cuerpo : ""
     });
 
     const onChange = e => {
         guardarNuevaNoticia({
             ...nuevaNoticia,
             [e.target.name] : e.target.value
-
         })
     }
+
+    useEffect(() => {
+        guardarNuevaNoticia({
+            ...nuevaNoticia,
+            cuerpo: newsContent
+        })
+    // eslint-disable-next-line
+    }, [newsContent]);
     
     const [ estadoVideo, guardarEstadoVideo ] = useState({
         siVideo : false,
@@ -68,7 +77,8 @@ const CreateNews = (props) => {
     // eslint-disable-next-line
     }, [siVideo]);
     
-    const  [mostraSpinnerEnVideo, GmostraSpinnerEnVideo ] = useState(false);
+    const  [ mostraSpinnerEnVideo, GmostraSpinnerEnVideo ] = useState(false);
+    const  [ spinnerImage, setSpinnerImage ] = useState(false);
 
     const CambiaMostraSpinnerEnVideo = () => {
        GmostraSpinnerEnVideo(true);
@@ -96,6 +106,8 @@ const CreateNews = (props) => {
             return
         }
 
+        setSpinnerImage(true);
+
         const f = new FormData();
 
         f.append("image", archivos[0]);
@@ -109,6 +121,8 @@ const CreateNews = (props) => {
                 img : imagenURL
             });
 
+            setSpinnerImage(false);
+
         } catch (error) {
             console.log(error.response);
 
@@ -116,6 +130,8 @@ const CreateNews = (props) => {
                 ...nuevaNoticia,
                 img : ""
             });
+
+            setSpinnerImage(false);
         }        
     }
 
@@ -126,10 +142,29 @@ const CreateNews = (props) => {
     const onSubmit = e => {
         e.preventDefault();
 
+        if(nuevaNoticia.cuerpo.trim() === ""){
+            
+            guardarMostrarAlerta({
+                ...mostrarAlerta,
+                mostrar: true,
+                description : "You have to write some content."
+            });
+
+            setTimeout(() => {
+                guardarMostrarAlerta({
+                  ...mostrarAlerta,
+                  mostrar: false,
+                  });
+  
+              }, 5000);
+            return;
+        }
+
         agregarNoticia(nuevaNoticia);
     }
 
     const agregarNoticia = async datos => {
+
         setLoading(true);
 
         try {
@@ -222,25 +257,32 @@ const CreateNews = (props) => {
                                             onChange={ (e) => subirArchivos(e.target.files)}
                                             required
                                         />
-                                    {
-                                        nuevaNoticia.img ? (
-                                            <Image width={785} height={510} src={nuevaNoticia.img} className="panel-editor-campos-imagen" alt="Imagen de la noticia" />
+                                        {spinnerImage ? (
+                                        <div className="contenedorSpinner">
+                                            <Spinner/>
+                                        </div>
                                         ) : (
-                                            <Image width={785} height={510} src="/img/noImage.jpg" className="panel-editor-campos-imagen" alt="Imagen de la noticia" />
-                                        )
-                                    }
-
+                                            <div>
+                                                {
+                                                    nuevaNoticia.img ? (
+                                                        <Image width={785} height={510} src={nuevaNoticia.img} className="panel-editor-campos-imagen" alt="Imagen de la noticia" />
+                                                    ) : (
+                                                        <Image width={785} height={510} src="/img/noImage.jpg" className="panel-editor-campos-imagen" alt="Imagen de la noticia" />
+                                                    )
+                                                }
+                                            </div>
+                                        )}
                                     <br/>
                                 </div>
-                              
                                 
                                 <div className="panel-editor-campos">
                                     <label>Write the news&#39; content :</label>
                                     <br/><br/>
-                                    <TextEditor/>
+                                    <TextEditor 
+                                        setNewsContent={setNewsContent}
+                                    />
                                     <br/><br/>
                                 </div>
-                                
                                 <hr/>
                                 <div className="panel-editor-campos">
                                     <label htmlFor="tipo">Video : </label>
@@ -282,9 +324,11 @@ const CreateNews = (props) => {
                                     )
                                     : null} </div>)}
                                 </div>
-                                <br/>
-                                <br/>
-                                <hr/>
+                                
+                                <br/><br/><hr/>
+
+                                {mostrarAlerta.mostrar ? <div className="mostrarAlerta">{mostrarAlerta.description}</div> : null}
+                               
                                 <div className="panel-editor-campos panel-editor-botones">
                                     <Button
                                         type="reset"
