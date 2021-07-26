@@ -7,8 +7,11 @@ import Head from 'next/head';
 import copy from 'copy-to-clipboard';
 import axiosClient from '../../config/axios';
 import Image from 'next/image';
+import { Markup } from 'interweave';
 
 const NewsPage = ({data}) => {
+
+  console.log(data);
 
   // Debo cambiar los enlaces luego
   const link = `https://news.com/news/${data._id}`;
@@ -97,15 +100,7 @@ const NewsPage = ({data}) => {
                   </div>
                   <div className="Ncuerpo--noticias--desarrollo">
                     <div className="cuerpo--noticias--desarrollo">
-                        {data.cuerpo.map((parrafo) => (
-                            <Fragment  key={parrafo}>
-                              {parrafo != "" ? 
-                                <Fragment>
-                                    <p className="cuerpo--noticias--desarrollo--parrafo">{parrafo}</p>
-                                </Fragment>
-                              : null}
-                            </Fragment>
-                        ))}
+                      <Markup content={data.cuerpo[0]} />
                     </div>
                   </div>
               </div>

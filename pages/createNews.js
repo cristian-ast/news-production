@@ -177,19 +177,21 @@ const CreateNews = (props) => {
 
         try {
             const respuesta = await axiosBackendCliente.post('/api/noticias', datos);
-            setProcessText("Noticia guardada exitosamente");
+            setProcessText("News saved successfully");
             guardarNuevaNoticia(respuesta.data);
 
             setTimeout(() => {
                 guardarInfoNoticia(true);
             }, 1000);
 
+            Router.push('/');
+
         } catch (error) {
 
             if(error.response.data.msg) {
                 setProcessText(error.response.data.msg);
             } else {
-                setProcessText("Error, intentalo de nuevo");
+                setProcessText("Error, try again");
             }
 
             setTimeout(() => {
