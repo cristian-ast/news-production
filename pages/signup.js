@@ -16,16 +16,10 @@ const SignUp = (props) => {
     const { Auth, usuarioAutenticado, GuardarAuth } = useContext(AuthContext);
 
     useEffect(() => {        
-        usuarioAutenticado();
+        usuarioAutenticado("signup");
+
     // eslint-disable-next-line
     }, []);
-
-    useEffect(() => {
-        if(Auth.autenticado) {
-            Router.push('/menu');
-        }
-    // eslint-disable-next-line
-    }, [Auth.autenticado]);
 
     const [usuario, guardarUsuario] = useState({
         nombre: '',

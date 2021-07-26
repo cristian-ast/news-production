@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Spinner from '../components/Spinner';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
@@ -10,8 +10,16 @@ import ContainerForAuth from '../components/ContainerForAuth';
 import Router from 'next/router';
 import VistaPreviavideo from '../components/VistaPreviavideo';
 import TextEditor from '../components/TextEditor';
+import { AuthContext } from '../context/AuthContext';
 
 const CreateNews = (props) => {
+
+    const { Auth, usuarioAutenticado } = useContext(AuthContext);
+
+    useEffect(() => {        
+        usuarioAutenticado("createNews");
+    // eslint-disable-next-line
+    }, []);
 
     const [ mostrarInfoNoticia, guardarInfoNoticia ] = useState(false);
 

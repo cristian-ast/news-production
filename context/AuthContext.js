@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { axiosBackendCliente } from '../config/axios';
 import tokenAuth from '../config/token';
+import Router from 'next/router';
 
 // crear el Contex
 export const AuthContext = createContext();
@@ -14,7 +15,7 @@ const AuthProvider = (props) => {
         autenticado : false
     });
 
-    const usuarioAutenticado = async () => {
+    const usuarioAutenticado = async (actualPage) => {
 
         const token = localStorage.getItem('token');
 
@@ -29,6 +30,14 @@ const AuthProvider = (props) => {
                 token : null,
                 autenticado : false
             });
+
+            if(actualPage === "menu"){
+                Router.push('/login');
+            }
+
+            if(actualPage === "createNews"){
+                Router.push('/login');
+            }
 
             return;
         }
@@ -47,6 +56,14 @@ const AuthProvider = (props) => {
                 autenticado : true
             });
 
+            if(actualPage === "login"){
+                Router.push('/menu');
+            }
+
+            if(actualPage === "signup"){
+                Router.push('/menu');
+            }
+
         } catch (error) {
             localStorage.removeItem('token');
             localStorage.removeItem('nombre');
@@ -56,6 +73,16 @@ const AuthProvider = (props) => {
                 token : null,
                 autenticado : false
             });
+
+            if(actualPage === "menu"){
+                Router.push('/login');
+            }
+
+            if(actualPage === "createNews"){
+                Router.push('/login');
+            }
+
+            return false;
         }
     }
 
