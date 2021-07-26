@@ -13,12 +13,19 @@ const SignUp = (props) => {
     const [ loading, setLoading ] = useState(false);
     const [ processText, setProcessText ] = useState("Loading...");
 
-    const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
+    const { Auth, usuarioAutenticado, GuardarAuth } = useContext(AuthContext);
 
-    // useEffect(() => {        
-    //     usuarioAutenticado();
-    // // eslint-disable-next-line
-    // }, []);
+    useEffect(() => {        
+        usuarioAutenticado();
+    // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        if(Auth.autenticado) {
+            Router.push('/menu');
+        }
+    // eslint-disable-next-line
+    }, [Auth.autenticado]);
 
     const [usuario, guardarUsuario] = useState({
         nombre: '',
@@ -141,11 +148,8 @@ const SignUp = (props) => {
 
         } catch (error) {
 
-            if(error.response.data.msg) {
-                setProcessText(error.response.data.msg);
-            } else {
-                setProcessText("Error, intentalo de nuevo");
-            }
+            setProcessText("Error, try again.");
+            console.log(error);
 
             setTimeout(() => {
                 Router.push('/signup');

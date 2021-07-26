@@ -20,6 +20,17 @@ const AuthProvider = (props) => {
 
         if(token) {
             tokenAuth(token);
+        } else {
+            localStorage.removeItem('token');
+            localStorage.removeItem('nombre');
+            localStorage.removeItem('email');
+
+            GuardarAuth({
+                token : null,
+                autenticado : false
+            });
+
+            return;
         }
 
         try {

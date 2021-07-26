@@ -15,13 +15,17 @@ const LogIn = () => {
 
     const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
 
-    // useEffect(() => {        
-    //     usuarioAutenticado();
-    //     if(Auth.autenticado) {
-    //         Router.push('/menu');
-    //     }
-    // // eslint-disable-next-line
-    // }, []);
+    useEffect(() => {        
+        usuarioAutenticado();
+    // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        if(Auth.autenticado) {
+            Router.push('/menu');
+        }
+    // eslint-disable-next-line
+    }, [Auth.autenticado]);
 
     // State para iniciar sesión
     const [usuario, guardarUsuario] = useState({
@@ -119,12 +123,9 @@ const LogIn = () => {
             }, 1000);
 
         } catch (error) {
-
-            if(error.response.data.msg) {
-                setProcessText(error.response.data.msg);
-            } else {
-                setProcessText("Error, try again.");
-            }
+           
+            setProcessText("Error, try again.");
+            console.log(error)
 
             GuardarAuth({
                 token: null,

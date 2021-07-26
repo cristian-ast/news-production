@@ -3,14 +3,24 @@ import ContenedorMenu from '../components/ContenedorMenu';
 import ContainerForAuth from '../components/ContainerForAuth';
 import { AuthContext } from '../context/AuthContext';
 import Processing from '../components/Processing';
+import Router from 'next/router';
 
 const Menu = () => {
 
-    const [ loading, setLoading ] = useState(true);
-    const [ processText, setProcessText ] = useState("Loading...");
+    const [ processText ] = useState("Loading...");
+    const { Auth, usuarioAutenticado } = useContext(AuthContext);
 
-    // Extraer la información de autenticación
-    const { usuarioAutenticado } = useContext(AuthContext);
+    useEffect(() => {        
+        usuarioAutenticado();
+    // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        if(!Auth.autenticado) {
+            Router.push('/login');
+        }
+    // eslint-disable-next-line
+    }, [Auth.autenticado]);
 
     const [ userInf, setUserInf ] = useState({
         name: "",
@@ -23,7 +33,6 @@ const Menu = () => {
             name: localStorage.getItem('nombre'),
             email: localStorage.getItem('email')
         });
-        setLoading(false);
     // eslint-disable-next-line
     }, []);
     
