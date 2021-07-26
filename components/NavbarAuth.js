@@ -1,14 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeIcon from '@material-ui/icons/Home';
 import { AuthContext } from '../context/AuthContext';
 import Router from 'next/router';
 import Button from '@material-ui/core/Button';
 
 const NavbarAuth = () => {
 
-  const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
+  const { Auth, GuardarAuth } = useContext(AuthContext);
 
   const logOut = () => {
     
@@ -27,13 +26,9 @@ const NavbarAuth = () => {
   return (
     <div>
       <div className="navbarAuth">
-        <div className="navbarAuth--nombre">
-          <p>News</p>
-        </div>
-
         <Link href="/">
-          <div className="navbarAuth--boton">
-              <HomeIcon style={{ fontSize: 20 }}/> <p>Home</p> 
+          <div className="navbarAuth--nombre navbarAuth--nombre__botton">
+            <p>News</p>
           </div>
         </Link>
         

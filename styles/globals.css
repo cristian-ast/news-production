@@ -98,8 +98,8 @@ a {
     position: fixed;
     z-index: 6;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-around;
     background-color: #2196f3;
     width: 100%;
     -webkit-box-shadow: 10px 10px 22px -15px rgba(0,0,0,0.75);
@@ -108,11 +108,20 @@ a {
 }
 
 .navbarAuth--nombre {
+  margin-left: 20px;
   padding-left: 10px;
   padding-right: 10px;
   color: white;
   font-size: 18px;
   font-weight: bolder;
+}
+
+.navbarAuth--nombre__botton {
+  cursor: pointer;
+}
+
+.navbarAuth--nombre__botton:hover {
+  color: black;
 }
 
 .navbarAuth--boton {
