@@ -37,8 +37,8 @@ const EdictNews = ({data}) => {
     const [nuevaNoticia, guardarNuevaNoticia] = useState({
         titulo : data.titulo,
         autor : data.autor,
-        tipo : data.titulo,
-        img : data.imf,
+        tipo : data.tipo,
+        img : data.img,
         video : data.video,
         cuerpo : data.cuerpo
     });
@@ -152,7 +152,7 @@ const EdictNews = ({data}) => {
     const onSubmit = e => {
         e.preventDefault();
 
-        if(nuevaNoticia.cuerpo.trim() === ""){
+        if(nuevaNoticia.cuerpo[0].trim() === ""){
             
             guardarMostrarAlerta({
                 ...mostrarAlerta,
@@ -178,15 +178,15 @@ const EdictNews = ({data}) => {
         setLoading(true);
 
         try {
-            const respuesta = await axiosBackendCliente.post('/api/noticias', datos);
+            
+            const id = datos._id;
+            await clienteAxios.put(`/api/noticias/${id}`, datos);
+
             setProcessText("News saved successfully");
-            guardarNuevaNoticia(respuesta.data);
 
             setTimeout(() => {
-                guardarInfoNoticia(true);
+                Router.push('/');
             }, 1000);
-
-            Router.push('/');
 
         } catch (error) {
 
@@ -264,14 +264,12 @@ const EdictNews = ({data}) => {
                                     <br/>
                                     <label htmlFor="img">Picture : <span style={{ fontWeight: 350}}>(It is recommended that it be 1000 x 514)</span></label>
 
-                                        <input 
-                                            value={nuevaNoticia.img}
+                                        <input
                                             className="campo-form" 
                                             type="file" 
                                             name="files" 
                                             accept=".pdf,.jpg,.png,.jpeg"
                                             onChange={ (e) => subirArchivos(e.target.files)}
-                                            required
                                         />
                                         {spinnerImage ? (
                                         <div className="contenedorSpinner">
@@ -296,6 +294,7 @@ const EdictNews = ({data}) => {
                                     <br/><br/>
                                     <TextEditor 
                                         setNewsContent={setNewsContent}
+                                        defaultData={nuevaNoticia.cuerpo[0]}
                                     />
                                     <br/><br/>
                                 </div>

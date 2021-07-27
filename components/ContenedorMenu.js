@@ -46,7 +46,7 @@ const ContenedorMuenu = ({nombre, email}) => {
                     </Button>
                 </Link>
                 <br/>
-                <Link href="/EditarNoticia">
+                <Link href="/edictNews">
                     <Button
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
                         size="small"
