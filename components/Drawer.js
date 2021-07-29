@@ -59,7 +59,7 @@ const NavDrawer = () => {
           <ListItemIcon>
             <PersonIcon/>
           </ListItemIcon>
-          <ListItemText primary={"My account"} />
+          <ListItemText primary={"Mi cuenta"} />
         </ListItem>
       </Link>
       <Divider />
@@ -70,52 +70,52 @@ const NavDrawer = () => {
             <ListItemIcon>
               <HomeIcon/>
             </ListItemIcon>
-            <ListItemText primary={"Home"} />
+            <ListItemText primary={"Inicio"} />
           </ListItem>
         </Link>
         
-        <Link href="/recent">
+        <Link href="/actualidad">
           <ListItem button>
             <ListItemIcon>
               <ImportContactsIcon/>
             </ListItemIcon>
-            <ListItemText primary={"Recent"} />
+            <ListItemText primary={"Actualidad"} />
           </ListItem>
         </Link>
         
-        <Link href="/sports">
+        <Link href="/deportes">
           <ListItem button>
             <ListItemIcon>
               <SportsCricketIcon/>
             </ListItemIcon>
-            <ListItemText primary={"Sports"} />
+            <ListItemText primary={"Deportes"} />
           </ListItem>
         </Link>
         
-        <Link href="/justice">
+        <Link href="/justicia">
           <ListItem button>
             <ListItemIcon>
               <PolicyIcon/>
             </ListItemIcon>
-            <ListItemText primary={"Justice"} />
+            <ListItemText primary={"Justicia"} />
           </ListItem>
         </Link>
         
-        <Link href="/entertainment">
+        <Link href="/entretenimiento">
           <ListItem button>
             <ListItemIcon>
               <MusicNoteIcon/>
             </ListItemIcon>
-            <ListItemText primary={"Entertainment"} />
+            <ListItemText primary={"Entretenimiento"} />
           </ListItem>
         </Link>
         
-        <Link href="/economy">
+        <Link href="/economia">
           <ListItem button>
             <ListItemIcon>
               <PollIcon/>
             </ListItemIcon>
-            <ListItemText primary={"Economy"} />
+            <ListItemText primary={"Economia"} />
           </ListItem>
         </Link>
         
@@ -124,12 +124,12 @@ const NavDrawer = () => {
       <Divider />
       <List>
         
-      <Link href="/privacyPolicies">
+      <Link href="/politicasDePrivacidad">
         <ListItem button>
           <ListItemIcon>
             <VerifiedUserIcon/>
           </ListItemIcon>
-          <ListItemText primary={"Privacy Policies"} />
+          <ListItemText primary={"Política de Privacidad"} />
         </ListItem>
       </Link>
         

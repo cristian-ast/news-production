@@ -4,15 +4,14 @@ import Head from 'next/head';
 import axiosClient from '../config/axios';
 import News from '../components/News';
 import Processing from '../components/Processing';
-
-const Economy = () => {
+const Recent = () => {
 
     const [ loading, setLoading ] = useState(true);
     const [ data, setData ] = useState([]);
 
     const SearchTheNews = async () => {
       
-      const datos = { tipo : "Economia" };
+      const datos = { tipo : "Actualidad" };
 
       try {
 
@@ -34,26 +33,26 @@ const Economy = () => {
       <Container>
         <Head>
             <meta charset="utf-8" />
-            <title>News - Economy </title>
-            <meta name="description" content="This is a Web application about the news. If you want to upload news you only have to create an account and get started.  " />
+            <title>Somos SFM - Actualidad </title>
+            <meta name="description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
             <link rel="icon" href="/favicon.ico" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
             <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet" />
             {/*Open Graph / Facebook*/}
-            <meta property="og:title" content="Somos SFM"/>
-            <meta property="og:description" content="This is a Web application about the news. If you want to upload news you only have to create an account and get started."/>
-            <meta property="og:image" content="/img/logo.png"></meta>
+            <meta property="og:title" content="Somos SFM - Actualidad"/>
+            <meta property="og:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+            <meta property="og:image" content="/img/logo.jpeg"></meta>
             {/* Twitter */}
-            <meta property="twitter:title" content="Somos SFM"/>
-            <meta property="twitter:description" content="This is a Web application about the news. If you want to upload news you only have to create an account and get started."/>
-            <meta property="twitter:image" content="/img/logo.png"></meta>
+            <meta property="twitter:title" content="Somos SFM - Actualidad"/>
+            <meta property="twitter:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana"/>
+            <meta property="twitter:image" content="/img/logo.jpeg"></meta>
         </Head>
           <div className="inicio">
             <div className="sub-inicio">
                 <div className="sub-cuerpo mtop">
-                  { loading ? <Processing processText={"Loading..."}/> : <News data = {data} tipo="Economy"/> }
+                  { loading ? <Processing processText={"Loading..."}/> : <News data = {data} tipo="Recent"/> }
                 </div>
             </div>
           </div>
@@ -61,4 +60,4 @@ const Economy = () => {
     );
 }
 
-export default Economy;
+export default Recent;

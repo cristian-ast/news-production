@@ -8,22 +8,18 @@ import { axiosBackendCliente } from '../../config/axios';
 import Image from 'next/image';
 import ContainerForAuth from '../../components/ContainerForAuth';
 import Router from 'next/router';
-import VistaPreviavideo from '../../components/VistaPreviavideo';
+import VistaPreviavideoEditar from '../../components/VistaPreviaVideoEditar';
 import TextEditor from '../../components/TextEditor';
 import { AuthContext } from '../../context/AuthContext';
 
 const EdictNews = ({data}) => {
 
-    console.log(data);
-
-    const { Auth, usuarioAutenticado } = useContext(AuthContext);
+    const { usuarioAutenticado } = useContext(AuthContext);
 
     useEffect(() => {        
         usuarioAutenticado("createNews");
     // eslint-disable-next-line
     }, []);
-
-    const [ mostrarInfoNoticia, guardarInfoNoticia ] = useState(false);
 
     const [ loading, setLoading ] = useState(false);
     const [ processText, setProcessText ] = useState("Loading...");
@@ -35,6 +31,7 @@ const EdictNews = ({data}) => {
     });
 
     const [nuevaNoticia, guardarNuevaNoticia] = useState({
+        _id: data._id,
         titulo : data.titulo,
         autor : data.autor,
         tipo : data.tipo,
@@ -53,14 +50,15 @@ const EdictNews = ({data}) => {
     useEffect(() => {
         guardarNuevaNoticia({
             ...nuevaNoticia,
-            cuerpo: newsContent
+            cuerpo: [newsContent]
         })
+        
     // eslint-disable-next-line
     }, [newsContent]);
     
     const [ estadoVideo, guardarEstadoVideo ] = useState({
-        siVideo : false,
-        videoURL : ""
+        siVideo : data.video,
+        videoURL : data.video
     });
 
     const { siVideo, videoURL } = estadoVideo;
@@ -74,7 +72,7 @@ const EdictNews = ({data}) => {
 
     useEffect(() => {
         CambiaMostraSpinnerEnVideo();
-        if ( (siVideo === "false") || (siVideo === false) ) {
+        if (siVideo) {
             guardarNuevaNoticia({
                 ...nuevaNoticia,
                 video : "null"
@@ -180,34 +178,39 @@ const EdictNews = ({data}) => {
         try {
             
             const id = datos._id;
-            await clienteAxios.put(`/api/noticias/${id}`, datos);
+            await axiosBackendCliente.put(`/api/noticias/${id}`, datos);
 
             setProcessText("News saved successfully");
 
             setTimeout(() => {
-                Router.push('/');
+                Router.push(`https://cristian-news.vercel.app/${id}`);
             }, 1000);
 
         } catch (error) {
-
-            if(error.response.data.msg) {
-                setProcessText(error.response.data.msg);
-            } else {
-                setProcessText("Error, try again");
-            }
-
+            console.log(error)
+            setProcessText("Error, try again");
+           
             setTimeout(() => {
-                Router.push('/');
+                guardarNuevaNoticia({
+                    _id: data._id,
+                    titulo : data.titulo,
+                    autor : data.autor,
+                    tipo : data.tipo,
+                    img : data.img,
+                    video : data.video,
+                    cuerpo : data.cuerpo
+                });
+                setLoading(false);
+                setProcessText("Loading...");
             }, 1000);
         }
     }
 
     return (
         <ContainerForAuth>
-            {/* {mostrarInfoNoticia ? (<InfoNoticia nuevaNoticia={nuevaNoticia}/>) : <Fragment> */}
-                { loading ? (<Processing processText={processText} />) : 
-                    <div className="editor-noticias" >
-                        <div className="contenedor-editor">
+            { loading ? (<Processing processText={processText} />) : 
+                <div className="editor-noticias" >
+                    <div className="contenedor-editor">
                         <h2 className="marginCuerpoTo">Edict a news</h2>
                         <form
                                 onSubmit={onSubmit}
@@ -316,7 +319,7 @@ const EdictNews = ({data}) => {
                                             <Spinner/>
                                         </div>
                                     ) : (<div>
-                                    { (siVideo === "true") ? 
+                                    { siVideo? 
                                     (
                                         <div className="panel-editor-campos ">
                                             <label htmlFor="titulo">Link to Youtube video :</label>
@@ -329,8 +332,8 @@ const EdictNews = ({data}) => {
                                                 onChange={onChangeVideo}
                                                 required
                                             />
-                                            <p><b>Important: :</b> Before saving the news, make sure that the video loads correctly:</p>
-                                            <VistaPreviavideo 
+                                            <p><b>Important: </b> Before saving the news, make sure that the video loads correctly:</p>
+                                            <VistaPreviavideoEditar
                                                 videoURL={videoURL}
                                                 nuevaNoticia={nuevaNoticia}
                                                 guardarNuevaNoticia={guardarNuevaNoticia}
@@ -372,7 +375,6 @@ const EdictNews = ({data}) => {
                     </div>
                 </div>
             }
-            {/* </Fragment>} */}
         </ContainerForAuth>
     );
 }
@@ -384,6 +386,7 @@ EdictNews.getInitialProps = async (ctx) => {
       // Esta parte la cambiare cuando modifique el backend
       const respuesta = await axiosBackendCliente.post('/api/noticias/id/', { _id : id });
       const data = respuesta.data;
+      console.log(data);
       return {data}
     } catch (error) {
       const data = null;

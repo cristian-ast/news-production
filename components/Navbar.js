@@ -45,7 +45,7 @@ const Navbar = (props) => {
                         <NavDrawer />
                     </IconButton>
                     <Typography variant="h6" className={classes.title} style={{flexGrow: 2 }}>
-                        News
+                        Somos SFM
                     </Typography>
 
                 </Toolbar>
@@ -55,7 +55,7 @@ const Navbar = (props) => {
       <div className="navbar--computadoras">
         <Link href="/">
           <div className="navbar--computadoras--nombre navbarAuth--nombre__botton">
-            <p>News</p>
+            <p>Somos SFM</p>
           </div>
         </Link> 
 
@@ -63,33 +63,33 @@ const Navbar = (props) => {
           <p>|</p> 
         </div>
         
-        <Link href="/recent">
+        <Link href="/actualidad">
           <div className="navbar--computadoras--boton" >
-            <ImportContactsIcon style={{ fontSize: 20 }} /> <p>Recent</p> 
+            <ImportContactsIcon style={{ fontSize: 20 }} /> <p>Actualidad</p> 
           </div>
         </Link>
         
-        <Link href="/sports">
+        <Link href="/deportes">
           <div className="navbar--computadoras--boton">
-            <SportsCricketIcon style={{ fontSize: 20 }} /> <p>Sports</p> 
+            <SportsCricketIcon style={{ fontSize: 20 }} /> <p>Deportes</p> 
           </div>
         </Link>
         
-        <Link href="/justice">
+        <Link href="/justicia">
           <div className="navbar--computadoras--boton">
-            <PolicyIcon style={{ fontSize: 20 }} /> <p>Justice</p> 
+            <PolicyIcon style={{ fontSize: 20 }} /> <p>Justicia</p> 
           </div>
         </Link>
         
-        <Link href="/entertainment">
+        <Link href="/entretenimiento">
           <div className="navbar--computadoras--boton">
-            <MusicNoteIcon style={{ fontSize: 20 }} /> <p>Entertainment</p> 
+            <MusicNoteIcon style={{ fontSize: 20 }} /> <p>Entretenimiento</p> 
           </div>
         </Link>
         
-        <Link href="/economy">
+        <Link href="/economia">
           <div className="navbar--computadoras--boton">
-            <PollIcon style={{ fontSize: 20 }} /> <p>Economy</p> 
+            <PollIcon style={{ fontSize: 20 }} /> <p>Economia</p> 
           </div>
         </Link>
         
@@ -97,9 +97,9 @@ const Navbar = (props) => {
           <p>|</p> 
         </div>
         
-        <Link href="/privacyPolicies">
+        <Link href="/politicasDePrivacidad">
           <div className="navbar--computadoras--boton">
-            <VerifiedUserIcon style={{ fontSize: 20 }} /> <p> Privacy policies</p> 
+            <VerifiedUserIcon style={{ fontSize: 20 }} /> <p>Política de Privacidad </p> 
           </div>
         </Link>
 
@@ -109,7 +109,7 @@ const Navbar = (props) => {
 
         <Link href="/login">
           <div className="navbar--computadoras--boton">
-            <PersonIcon style={{ fontSize: 20 }} /> <p>My account</p> 
+            <PersonIcon style={{ fontSize: 20 }} /> <p>Mi cuenta</p> 
           </div>
         </Link>
       
