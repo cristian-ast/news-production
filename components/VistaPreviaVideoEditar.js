@@ -92,7 +92,7 @@ const VistaPreviavideoEditar = ({videoURL, nuevaNoticia, guardarNuevaNoticia}) =
 
     return (
         <div className="contenedor-vista-previa-video">
-            <iframe title="Video de Youtube" width="380" height="220" src={videoDeLaNoticia} frameborder="0" ></iframe>
+            <iframe title="Video de Youtube" width="380" height="220" src={videoDeLaNoticia} frameBorder="0" ></iframe>
         </div>
     );
 }
