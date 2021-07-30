@@ -157,7 +157,7 @@ const EditarNoticia = () => {
                                                     id="buscarPor"
                                                     name="titulo"
                                                     placeholder="Escribe el titulo de la noticia..."
-                                                    autocomplete="off"
+                                                    autoComplete="off"
                                                     onChange={onChange}
                                                     required
                                                 />
