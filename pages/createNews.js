@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import Head from 'next/head';
 import Spinner from '../components/Spinner';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
@@ -24,12 +25,12 @@ const CreateNews = (props) => {
     const [ mostrarInfoNoticia, guardarInfoNoticia ] = useState(false);
 
     const [ loading, setLoading ] = useState(false);
-    const [ processText, setProcessText ] = useState("Loading...");
+    const [ processText, setProcessText ] = useState("Cargando...");
     const [ newsContent, setNewsContent ] = useState("");
     // state de las alertas
     const [mostrarAlerta, guardarMostrarAlerta] = useState({
         mostrar: false,
-        description : "Each field is required."
+        description : "Cada campo es requerido"
     });
 
     const [nuevaNoticia, guardarNuevaNoticia] = useState({
@@ -155,7 +156,7 @@ const CreateNews = (props) => {
             guardarMostrarAlerta({
                 ...mostrarAlerta,
                 mostrar: true,
-                description : "You have to write some content."
+                description : "Debes escribir algo de contenido a la noticia"
             });
 
             setTimeout(() => {
@@ -177,7 +178,7 @@ const CreateNews = (props) => {
 
         try {
             const respuesta = await axiosBackendCliente.post('/api/noticias', datos);
-            setProcessText("News saved successfully");
+            setProcessText("Noticia guardada de manera exitosa");
             guardarNuevaNoticia(respuesta.data);
 
             setTimeout(() => {
@@ -191,7 +192,7 @@ const CreateNews = (props) => {
             if(error.response.data.msg) {
                 setProcessText(error.response.data.msg);
             } else {
-                setProcessText("Error, try again");
+                setProcessText("Error, trata de nuevo");
             }
 
             setTimeout(() => {
@@ -202,42 +203,60 @@ const CreateNews = (props) => {
 
     return (
         <ContainerForAuth>
+            <Head>
+                <meta charset="utf-8" />
+                <title>Somos SFM - Crear una noticia </title>
+                <meta name="description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet" />
+                {/*Open Graph / Facebook*/}
+                <meta property="og:title" content="Somos SFM - Crear una noticia"/>
+                <meta property="og:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+                <meta property="og:image" content="/img/logo.jpeg"></meta>
+                {/* Twitter */}
+                <meta property="twitter:title" content="Somos SFM - Crear una noticia"/>
+                <meta property="twitter:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana"/>
+                <meta property="twitter:image" content="/img/logo.jpeg"></meta>
+            </Head>
             {/* {mostrarInfoNoticia ? (<InfoNoticia nuevaNoticia={nuevaNoticia}/>) : <Fragment> */}
                 { loading ? (<Processing processText={processText} />) : 
                     <div className="editor-noticias" >
                         <div className="contenedor-editor">
-                        <h2 className="marginCuerpoTo">Create a news</h2>
+                        <h2 className="marginCuerpoTo">Crear noticia</h2>
                         <form
                                 onSubmit={onSubmit}
                             >
                                 <div className="panel-editor-campos">
-                                    <label htmlFor="titulo">Title :</label>
+                                    <label htmlFor="titulo">Título :</label>
                                     <input
                                         className="campo-form campo-form-with-100"
                                         type="text"
                                         id="titulo"
                                         name="titulo"
-                                        placeholder="Write the news' title..."
+                                        placeholder="Escribe el título de la noticia..."
                                         onChange={onChange}
                                         autoComplete="off"
                                         required
                                     />
                                 </div>
                                 <div className="panel-editor-campos">
-                                    <label htmlFor="autor">Author :</label>
+                                    <label htmlFor="autor">Autor :</label>
                                     <input
                                         className="campo-form campo-form-with-100"
                                         type="text"
                                         id="autor"
                                         name="autor"
-                                        placeholder="Write the author's name..."
+                                        placeholder="Escribe el nombre del autor..."
                                         onChange={onChange}
                                         required
                                     />
                                 </div>
 
                                 <div className="panel-editor-campos">
-                                    <label htmlFor="tipo">Type of news :</label>
+                                    <label htmlFor="tipo">Tipo de noticia :</label>
                                     <select 
                                         name="tipo" 
                                         id="tipo" 
@@ -245,19 +264,19 @@ const CreateNews = (props) => {
                                         onChange={onChange}
                                         required
                                     >
-                                        <option value="">--Please select an option--</option>
-                                        <option value="Actualidad">Recent</option>
-                                        <option value="Deportes">Sports</option>
-                                        <option value="Justicia">Justice</option>
-                                        <option value="Farandula">Entertainment</option>
-                                        <option value="Economia">Economy</option>
+                                        <option value="">--Por favor, selecciona una opcion--</option>
+                                        <option value="Actualidad">Actualidad</option>
+                                        <option value="Deportes">Deportes</option>
+                                        <option value="Justicia">Justicia</option>
+                                        <option value="Farandula">Entretenimiento</option>
+                                        <option value="Economia">Economia</option>
                                     </select>
                                     <br/>
                                 </div>
                                 <hr/>
                                 <div className="panel-editor-campos">
                                     <br/>
-                                    <label htmlFor="img">Picture : <span style={{ fontWeight: 350}}>(It is recommended that it be 1000 x 514)</span></label>
+                                    <label htmlFor="img">Imagen : <span style={{ fontWeight: 350}}>(Se recomienda una resolución de 1000 x 514)</span></label>
 
                                         <input 
                                             className="campo-form" 
@@ -286,7 +305,7 @@ const CreateNews = (props) => {
                                 </div>
                                 
                                 <div className="panel-editor-campos">
-                                    <label>Write the news&#39; content :</label>
+                                    <label>Escribe el contenido :</label>
                                     <br/><br/>
                                     <TextEditor 
                                         setNewsContent={setNewsContent}
@@ -303,7 +322,7 @@ const CreateNews = (props) => {
                                         className="siVideo-campo-form"
                                     >
                                         <option value="false" >No</option>
-                                        <option value="true">Yes</option>
+                                        <option value="true">Si</option>
                                     </select>
                                     <br/>
                                     {mostraSpinnerEnVideo ? (
@@ -314,17 +333,17 @@ const CreateNews = (props) => {
                                     { (siVideo === "true") ? 
                                     (
                                         <div className="panel-editor-campos ">
-                                            <label htmlFor="titulo">Link to Youtube video :</label>
+                                            <label htmlFor="titulo">Link a Youtube video :</label>
                                             <input
                                                 className="campo-form campo-form-with-100"
                                                 type="text"
                                                 id="titulo"
                                                 name="videoURL"
-                                                placeholder="Paste the video link here..."
+                                                placeholder="Pega el Link del video aquí..."
                                                 onChange={onChangeVideo}
                                                 required
                                             />
-                                            <p><b>Important: :</b> Before saving the news, make sure that the video loads correctly:</p>
+                                            <p><b>Importante: :</b> Antes de guardar la noticia asegurate de que el video cargue correctamente:</p>
                                             <VistaPreviavideo 
                                                 videoURL={videoURL}
                                                 nuevaNoticia={nuevaNoticia}
@@ -349,7 +368,7 @@ const CreateNews = (props) => {
                                         startIcon={<CancelIcon />}
                                         onClick={volverAlMenu}
                                     >
-                                        Cancel
+                                        Cancelar
                                     </Button>
                                     <Button
                                         type="submit"
@@ -359,7 +378,7 @@ const CreateNews = (props) => {
                                         size="small"
                                         startIcon={<SaveIcon />}
                                     >
-                                        Save changes
+                                        Guardar cambios
                                     </Button>
                                 </div>
                                 <br/><br/><br/><br/>

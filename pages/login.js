@@ -7,11 +7,12 @@ import ContainerForAuth from '../components/ContainerForAuth';
 import Button from '@material-ui/core/Button';
 import LaunchIcon from '@material-ui/icons/Launch';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const LogIn = () => {
     
     const [ loading, setLoading ] = useState(false);
-    const [ processText, setProcessText ] = useState("Loading...");
+    const [ processText, setProcessText ] = useState("Cargando...");
 
     const { Auth, GuardarAuth, usuarioAutenticado } = useContext(AuthContext);
 
@@ -109,7 +110,7 @@ const LogIn = () => {
 
             usuarioAutenticado();
 
-            setProcessText("You have successfully logged in.");
+            setProcessText("Has iniciado sección de manera exitosa");
 
             setTimeout(() => {
                 Router.push('/menu');
@@ -117,7 +118,7 @@ const LogIn = () => {
 
         } catch (error) {
            
-            setProcessText("Error, try again.");
+            setProcessText("Error, trata de nuevo");
             console.log(error)
 
             GuardarAuth({
@@ -135,14 +136,32 @@ const LogIn = () => {
             });
             
             setTimeout(() => {
-                setLoading(false);
+                setLoading(false); 
+                setProcessText("Cargando...");
             }, 1000);
-         
         }    
     }
 
     return (
         <ContainerForAuth>
+            <Head>
+                <meta charset="utf-8" />
+                <title>Somos SFM</title>
+                <meta name="description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet" />
+                {/*Open Graph / Facebook*/}
+                <meta property="og:title" content="Somos SFM"/>
+                <meta property="og:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+                <meta property="og:image" content="/img/logo.jpeg"></meta>
+                {/* Twitter */}
+                <meta property="twitter:title" content="Somos SFM"/>
+                <meta property="twitter:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana"/>
+                <meta property="twitter:image" content="/img/logo.jpeg"></meta>
+            </Head>
         { loading ? (<Processing processText={processText} />) : 
             <div className="inicio">
                 <div className="sub-inicio">
@@ -150,7 +169,7 @@ const LogIn = () => {
                         <br/><br/><br/>
                         <div className="form-usuario marginCuerpoTo">
                             <div className="contenedor-form">
-                                <h2>Log in</h2>
+                                <h2>Iniciar sección</h2>
                                 <form
                                     onSubmit={onSubmit}
                                 >
@@ -160,18 +179,18 @@ const LogIn = () => {
                                             type="email"
                                             id="email"
                                             name="email"
-                                            placeholder="Enter your email"
+                                            placeholder="Escribe tú email"
                                             onChange={onChange}
                                             required
                                         />
                                     </div>
                                     <div className="campo-form">
-                                        <label htmlFor="email">Password</label>
+                                        <label htmlFor="email">Contraseña</label>
                                         <input
                                             type="password"
                                             id="password"
                                             name="password"
-                                            placeholder="Enter your password"
+                                            placeholder="Escribe tú contraseña"
                                             onChange={onChange}
                                             required
                                         />
@@ -184,7 +203,7 @@ const LogIn = () => {
                                             variant="contained"
                                             startIcon={<LaunchIcon/>}
                                         >
-                                            Log in
+                                            Entrar
                                         </Button>
                                     </div>
                                 </form>
@@ -193,14 +212,14 @@ const LogIn = () => {
                         </div> 
                         <div>
                             <br/><br/>
-                            <h2>Or create an account</h2>
+                            <h2>O crea una cuenta</h2>
                             <Link href="/signup">
                                 <Button
                                     size="small"
                                     variant="contained"
                                     startIcon={<LaunchIcon/>}
                                 >
-                                    Sign up
+                                    Crear cuenta
                                 </Button>
                             </Link>
                             <br/><br/>

@@ -37,17 +37,17 @@ const ContactForm = () => {
             <div className="Contenedoe-Send_email">
                 {MensajeAlerta ? (<h3 className="alerta-email">{MensajeAlerta}</h3>) : 
                 <Fragment>
-                    <h3>Leave us a message:</h3>
+                    <h3>Déjanos un mensaje:</h3>
                     <form onSubmit={sendEmail}>
                         <div className="">
                             <div className="campo-form campo-form-with2">
-                                <input type="text" className="form-control" placeholder="Name" name="name" required/>
+                                <input type="text" className="form-control" placeholder="Nombre" name="name" required/>
                             </div>
                             <div className="campo-form campo-form-with2">
                                 <input type="email" className="form-control" placeholder="Email" name="email" required/>
                             </div>
                             <div className="campo-form campo-form-with2">
-                                <textarea className="form-control" id="" cols="30" rows="8" placeholder="Write your message" name="message" required></textarea>
+                                <textarea className="form-control" id="" cols="30" rows="8" placeholder="Escribe tú mensaje" name="message" required></textarea>
                             </div>
                             <br/>
                             <div className="form-group-send">
@@ -58,7 +58,7 @@ const ContactForm = () => {
                                     startIcon={<SendIcon/>}
                                     type="submit"
                                 >
-                                    Send message
+                                    Enviar mensaje
                                 </Button> 
                             </div>
                            

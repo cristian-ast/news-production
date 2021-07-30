@@ -52,7 +52,7 @@ const Recent = () => {
           <div className="inicio">
             <div className="sub-inicio">
                 <div className="sub-cuerpo mtop">
-                  { loading ? <Processing processText={"Loading..."}/> : <News data = {data} tipo="Recent"/> }
+                  { loading ? <Processing processText={"Cargando..."}/> : <News data = {data} tipo="Recent"/> }
                 </div>
             </div>
           </div>

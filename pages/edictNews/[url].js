@@ -11,6 +11,7 @@ import Router from 'next/router';
 import VistaPreviavideoEditar from '../../components/VistaPreviaVideoEditar';
 import TextEditor from '../../components/TextEditor';
 import { AuthContext } from '../../context/AuthContext';
+import Head from 'next/head';
 
 const EdictNews = ({data}) => {
 
@@ -208,6 +209,24 @@ const EdictNews = ({data}) => {
 
     return (
         <ContainerForAuth>
+            <Head>
+                <meta charset="utf-8" />
+                <title>Somos SFM - Edita una noticia </title>
+                <meta name="description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet" />
+                {/*Open Graph / Facebook*/}
+                <meta property="og:title" content="Somos SFM - Edita una noticia"/>
+                <meta property="og:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+                <meta property="og:image" content="/img/logo.jpeg"></meta>
+                {/* Twitter */}
+                <meta property="twitter:title" content="Somos SFM - Edita una noticia"/>
+                <meta property="twitter:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana"/>
+                <meta property="twitter:image" content="/img/logo.jpeg"></meta>
+            </Head>
             { loading ? (<Processing processText={processText} />) : 
                 <div className="editor-noticias" >
                     <div className="contenedor-editor">

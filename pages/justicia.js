@@ -52,7 +52,7 @@ const Justice = () => {
           <div className="inicio">
             <div className="sub-inicio">
                 <div className="sub-cuerpo mtop">
-                  { loading ? <Processing processText={"Loading..."}/> : <News data = {data} tipo="Justice"/> }
+                  { loading ? <Processing processText={"Cargando..."}/> : <News data = {data} tipo="Justice"/> }
                 </div>
             </div>
           </div>

@@ -33,7 +33,7 @@ const ContenedorMuenu = ({nombre, email}) => {
                         
                     </div>
                 </div>
-                <h3>Menu</h3>
+                <h3>Menú</h3>
                 <Link href="/createNews">
                     <Button
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
@@ -42,7 +42,7 @@ const ContenedorMuenu = ({nombre, email}) => {
                         color="primary"
                         startIcon={<AddCircleOutlineIcon />}
                     >
-                        Add a news
+                        Crear noticia
                     </Button>
                 </Link>
                 <br/>
@@ -54,21 +54,34 @@ const ContenedorMuenu = ({nombre, email}) => {
                         color="primary"
                         startIcon={<EditIcon />}
                     >
-                        Edit a news
+                        Editar noticia
                     </Button>  
                 </Link>
                 <br/>
-                <Link href="/EditarNoticia">
+                <Link href="/edictNews">
                     <Button
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
                         size="small"
                         variant="contained"
-                        color="secondary"
-                        startIcon={<DeleteIcon />}
+                        color="primary"
+                        startIcon={<AddCircleOutlineIcon />}
                     >
-                        Delete my account
+                        Crear anuncio
                     </Button>  
                 </Link>
+                <br/>
+                <Link href="/edictNews">
+                    <Button
+                        className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        startIcon={<EditIcon />}
+                    >
+                        Editar anuncio
+                    </Button>  
+                </Link>
+                <br/>
             </div>    
         </div>
     );

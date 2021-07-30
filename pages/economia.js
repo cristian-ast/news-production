@@ -53,7 +53,7 @@ const Economy = () => {
           <div className="inicio">
             <div className="sub-inicio">
                 <div className="sub-cuerpo mtop">
-                  { loading ? <Processing processText={"Loading..."}/> : <News data = {data} tipo="Economy"/> }
+                  { loading ? <Processing processText={"Cargando..."}/> : <News data = {data} tipo="Economy"/> }
                 </div>
             </div>
           </div>

@@ -28,7 +28,7 @@ const NavbarAuth = () => {
       <div className="navbarAuth">
         <Link href="/">
           <div className="navbarAuth--nombre navbarAuth--nombre__botton">
-            <p>News</p>
+            <p>Somos SFM</p>
           </div>
         </Link>
         
@@ -42,7 +42,7 @@ const NavbarAuth = () => {
                 onClick={() => logOut()}
                 startIcon={<ExitToAppIcon />}
             >
-                Log out
+                Cerrar sección
             </Button>
           </div>
         ) : null}

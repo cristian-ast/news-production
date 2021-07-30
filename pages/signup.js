@@ -7,11 +7,12 @@ import Button from '@material-ui/core/Button';
 import LaunchIcon from '@material-ui/icons/Launch';
 import Link from 'next/link';
 import { AuthContext } from '../context/AuthContext';
+import Head from 'next/head';
 
 const SignUp = (props) => {
     
     const [ loading, setLoading ] = useState(false);
-    const [ processText, setProcessText ] = useState("Loading...");
+    const [ processText, setProcessText ] = useState("Cargando...");
 
     const { Auth, usuarioAutenticado, GuardarAuth } = useContext(AuthContext);
 
@@ -142,17 +143,36 @@ const SignUp = (props) => {
 
         } catch (error) {
 
-            setProcessText("Error, try again.");
+            setProcessText("Error, trata de nuevo");
             console.log(error);
 
             setTimeout(() => {
                 Router.push('/signup');
+                setProcessText("Cargando...");
             }, 1000);
         }
     }
 
     return (
         <ContainerForAuth>
+            <Head>
+                <meta charset="utf-8" />
+                <title>Somos SFM</title>
+                <meta name="description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet" />
+                {/*Open Graph / Facebook*/}
+                <meta property="og:title" content="Somos SFM"/>
+                <meta property="og:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
+                <meta property="og:image" content="/img/logo.jpeg"></meta>
+                {/* Twitter */}
+                <meta property="twitter:title" content="Somos SFM"/>
+                <meta property="twitter:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana"/>
+                <meta property="twitter:image" content="/img/logo.jpeg"></meta>
+            </Head>
         { loading ? (<Processing processText={processText} />) : 
             <div className="inicio">
                 <div className="sub-inicio">
@@ -160,17 +180,17 @@ const SignUp = (props) => {
                         <br/><br/><br/>
                         <div className="form-usuario marginCuerpoTo">
                             <div className="contenedor-form">
-                                <h2>Sing up</h2>
+                                <h2>Crear cuenta</h2>
                                 <form
                                     onSubmit={onSubmit}
                                 >
                                     <div className="campo-form">
-                                        <label htmlFor="email">Name</label>
+                                        <label htmlFor="email">Nombre</label>
                                         <input
                                             type="text"
                                             id="nombre"
                                             name="nombre"
-                                            placeholder="Enter your name"
+                                            placeholder="Escribe tú nombre"
                                             onChange={onChange}
                                             required
                                         />
@@ -181,29 +201,29 @@ const SignUp = (props) => {
                                             type="email"
                                             id="email"
                                             name="email"
-                                            placeholder="Enter your email"
+                                            placeholder="Escribe tú Email"
                                             onChange={onChange}
                                             required
                                         />
                                     </div>
                                     <div className="campo-form">
-                                        <label htmlFor="email">Password</label>
+                                        <label htmlFor="email">Contraseña</label>
                                         <input
                                             type="password"
                                             id="password"
                                             name="password"
-                                            placeholder="Enter your password"
+                                            placeholder="Escribe tú contraseña"
                                             onChange={onChange}
                                             required
                                         />
                                     </div>
                                     <div className="campo-form">
-                                        <label htmlFor="repetir">Repeat Password</label>
+                                        <label htmlFor="repetir">Repite la contraseña</label>
                                         <input
                                             type="password"
                                             id="repetir"
                                             name="repetir"
-                                            placeholder="Enter your password again"
+                                            placeholder="Escribe tú contraseña de nuevo"
                                             onChange={onChange}
                                             required
                                         />
@@ -216,7 +236,7 @@ const SignUp = (props) => {
                                             variant="contained"
                                             startIcon={<LaunchIcon/>}
                                         >
-                                            Sign up
+                                            Crear
                                         </Button>
                                     </div>
                                 </form>
@@ -225,14 +245,14 @@ const SignUp = (props) => {
                         </div> 
                         <div>
                             <br/><br/>
-                            <h2>Or log in to your account</h2>
+                            <h2>O inicia sección en tu cuenta</h2>
                             <Link href="/login">
                                 <Button
                                     size="small"
                                     variant="contained"
                                     startIcon={<LaunchIcon/>}
                                 >
-                                    Log in
+                                    Iniciar sección
                                 </Button>
                             </Link>
                             <br/><br/>
