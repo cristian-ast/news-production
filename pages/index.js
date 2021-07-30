@@ -56,7 +56,7 @@ export default function Home() {
             </div>
             <div className="contenerdorTextos">
               <div className="textos">
-                <h2>Welcome to the best place for news</h2>
+                <h2>Bienvenidos al mejor lugar para las noticias</h2>
               </div>
             </div>
           </div>

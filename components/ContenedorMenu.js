@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import LaunchIcon from '@material-ui/icons/Launch';
 import Link from 'next/link';
 import Image from 'next/image';
 import bigUser from '../public/img/bigUser.png';
@@ -51,14 +51,13 @@ const ContenedorMuenu = ({nombre, email}) => {
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
                         size="small"
                         variant="contained"
-                        color="primary"
                         startIcon={<EditIcon />}
                     >
                         Editar noticia
                     </Button>  
                 </Link>
                 <br/>
-                <Link href="/edictNews">
+                <Link href="/createAd">
                     <Button
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
                         size="small"
@@ -70,15 +69,26 @@ const ContenedorMuenu = ({nombre, email}) => {
                     </Button>  
                 </Link>
                 <br/>
-                <Link href="/edictNews">
+                <Link href="/edictAd">
+                    <Button
+                        className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
+                        size="small"
+                        variant="contained"
+                        startIcon={<EditIcon />}
+                    >
+                        Editar anuncio
+                    </Button>  
+                </Link>
+                <br/>
+                <Link href="/signup">
                     <Button
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
                         size="small"
                         variant="contained"
                         color="primary"
-                        startIcon={<EditIcon />}
+                        startIcon={<LaunchIcon />}
                     >
-                        Editar anuncio
+                        Crear otra cuenta
                     </Button>  
                 </Link>
                 <br/>
