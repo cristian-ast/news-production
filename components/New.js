@@ -7,7 +7,7 @@ const New = ({titulo, img, url}) => {
 
     return (
         //Cambiar aqui cuando modifique backend
-        <Link href={"/news/" + url}>
+        <Link href={"/noticias/" + url}>
             <div 
                 style={{ backgroundImage: `url(${img})`, backgroundSize: "contain"}}
                 className="noticia--indivudual" 

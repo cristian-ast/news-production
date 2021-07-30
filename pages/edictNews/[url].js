@@ -23,12 +23,12 @@ const EdictNews = ({data}) => {
     }, []);
 
     const [ loading, setLoading ] = useState(false);
-    const [ processText, setProcessText ] = useState("Loading...");
-    const [ newsContent, setNewsContent ] = useState("");
+    const [ processText, setProcessText ] = useState("Cargando...");
+    const [ newsContent, setNewsContent ] = useState(data.cuerpo[0]);
     // state de las alertas
     const [mostrarAlerta, guardarMostrarAlerta] = useState({
         mostrar: false,
-        description : "Each field is required."
+        description : "Cada campo es requerido"
     });
 
     const [nuevaNoticia, guardarNuevaNoticia] = useState({
@@ -56,12 +56,20 @@ const EdictNews = ({data}) => {
         
     // eslint-disable-next-line
     }, [newsContent]);
+
+    const revisarSiHayVideo = () => {
+        if(data.video != "null"){
+            return "Si"
+        } else {
+            return "No"
+        }
+    }
     
     const [ estadoVideo, guardarEstadoVideo ] = useState({
-        siVideo : data.video,
+        siVideo : revisarSiHayVideo(),
         videoURL : data.video
     });
-
+    
     const { siVideo, videoURL } = estadoVideo;
 
     const onChangeVideo = e => {
@@ -73,14 +81,14 @@ const EdictNews = ({data}) => {
 
     useEffect(() => {
         CambiaMostraSpinnerEnVideo();
-        if (siVideo) {
+        if (siVideo ==="No") {
             guardarNuevaNoticia({
                 ...nuevaNoticia,
                 video : "null"
             })
             guardarEstadoVideo({
                 ...estadoVideo,
-                videoURL : ""
+                videoURL : "null"
             })
         }
     // eslint-disable-next-line
@@ -156,7 +164,7 @@ const EdictNews = ({data}) => {
             guardarMostrarAlerta({
                 ...mostrarAlerta,
                 mostrar: true,
-                description : "You have to write some content."
+                description : "Debes de escribir algo de contenido en la noticia"
             });
 
             setTimeout(() => {
@@ -181,7 +189,7 @@ const EdictNews = ({data}) => {
             const id = datos._id;
             await axiosBackendCliente.put(`/api/noticias/${id}`, datos);
 
-            setProcessText("News saved successfully");
+            setProcessText("Noticia guardada de manera exitosa");
 
             setTimeout(() => {
                 Router.push(`https://cristian-news.vercel.app/${id}`);
@@ -189,7 +197,7 @@ const EdictNews = ({data}) => {
 
         } catch (error) {
             console.log(error)
-            setProcessText("Error, try again");
+            setProcessText("Error, trata de nuevo");
            
             setTimeout(() => {
                 guardarNuevaNoticia({
@@ -202,7 +210,7 @@ const EdictNews = ({data}) => {
                     cuerpo : data.cuerpo
                 });
                 setLoading(false);
-                setProcessText("Loading...");
+                setProcessText("Cargando...");
             }, 1000);
         }
     }
@@ -230,40 +238,40 @@ const EdictNews = ({data}) => {
             { loading ? (<Processing processText={processText} />) : 
                 <div className="editor-noticias" >
                     <div className="contenedor-editor">
-                        <h2 className="marginCuerpoTo">Edict a news</h2>
+                        <h2 className="marginCuerpoTo">Editar noticia</h2>
                         <form
                                 onSubmit={onSubmit}
                             >
                                 <div className="panel-editor-campos">
-                                    <label htmlFor="titulo">Title :</label>
+                                    <label htmlFor="titulo">Título :</label>
                                     <input
                                         value={nuevaNoticia.titulo}
                                         className="campo-form campo-form-with-100"
                                         type="text"
                                         id="titulo"
                                         name="titulo"
-                                        placeholder="Write the news' title..."
+                                        placeholder="Escribe el titulo de la noticia..."
                                         onChange={onChange}
                                         autoComplete="off"
                                         required
                                     />
                                 </div>
                                 <div className="panel-editor-campos">
-                                    <label htmlFor="autor">Author :</label>
+                                    <label htmlFor="autor">Autor :</label>
                                     <input
                                         value={nuevaNoticia.autor}
                                         className="campo-form campo-form-with-100"
                                         type="text"
                                         id="autor"
                                         name="autor"
-                                        placeholder="Write the author's name..."
+                                        placeholder="Escribe el autor de la noticia..."
                                         onChange={onChange}
                                         required
                                     />
                                 </div>
 
                                 <div className="panel-editor-campos">
-                                    <label htmlFor="tipo">Type of news :</label>
+                                    <label htmlFor="tipo">Tipo de noticia :</label>
                                     <select
                                         value={nuevaNoticia.tipo}
                                         name="tipo" 
@@ -272,19 +280,19 @@ const EdictNews = ({data}) => {
                                         onChange={onChange}
                                         required
                                     >
-                                        <option value="">--Please select an option--</option>
-                                        <option value="Actualidad">Recent</option>
-                                        <option value="Deportes">Sports</option>
-                                        <option value="Justicia">Justice</option>
-                                        <option value="Farandula">Entertainment</option>
-                                        <option value="Economia">Economy</option>
+                                        <option value="">--Por favor, selecciona una opcion--</option>
+                                        <option value="Actualidad">Actualidad</option>
+                                        <option value="Deportes">Deportes</option>
+                                        <option value="Justicia">Justicia</option>
+                                        <option value="Farandula">Entretenimiento</option>
+                                        <option value="Economia">Economia</option>
                                     </select>
                                     <br/>
                                 </div>
                                 <hr/>
                                 <div className="panel-editor-campos">
                                     <br/>
-                                    <label htmlFor="img">Picture : <span style={{ fontWeight: 350}}>(It is recommended that it be 1000 x 514)</span></label>
+                                    <label htmlFor="img">Imagen : <span style={{ fontWeight: 350}}>(Se recomienda una resolución de 1000 x 514)</span></label>
 
                                         <input
                                             className="campo-form" 
@@ -312,7 +320,7 @@ const EdictNews = ({data}) => {
                                 </div>
                                 
                                 <div className="panel-editor-campos">
-                                    <label>Write the news&#39; content :</label>
+                                    <label>Escribe el contenido :</label>
                                     <br/><br/>
                                     <TextEditor 
                                         setNewsContent={setNewsContent}
@@ -325,12 +333,13 @@ const EdictNews = ({data}) => {
                                     <label htmlFor="tipo">Video : </label>
                                     <select 
                                         id="tipo" 
+                                        value={siVideo}
                                         onChange={onChangeVideo}
                                         name="siVideo"
                                         className="siVideo-campo-form"
                                     >
-                                        <option value="false" >No</option>
-                                        <option value="true">Yes</option>
+                                        <option value="No" >No</option>
+                                        <option value="Si">Si</option>
                                     </select>
                                     <br/>
                                     {mostraSpinnerEnVideo ? (
@@ -338,10 +347,10 @@ const EdictNews = ({data}) => {
                                             <Spinner/>
                                         </div>
                                     ) : (<div>
-                                    { siVideo? 
+                                    { (siVideo === "Si")? 
                                     (
                                         <div className="panel-editor-campos ">
-                                            <label htmlFor="titulo">Link to Youtube video :</label>
+                                            <label htmlFor="titulo">Link a Youtube video :</label>
                                             <input
                                                 className="campo-form campo-form-with-100"
                                                 type="text"
@@ -349,9 +358,8 @@ const EdictNews = ({data}) => {
                                                 name="videoURL"
                                                 placeholder="Paste the video link here..."
                                                 onChange={onChangeVideo}
-                                                required
                                             />
-                                            <p><b>Important: </b> Before saving the news, make sure that the video loads correctly:</p>
+                                            <p><b>Importante: :</b> Antes de guardar la noticia asegurate de que el video cargue correctamente:</p>
                                             <VistaPreviavideoEditar
                                                 videoURL={videoURL}
                                                 nuevaNoticia={nuevaNoticia}
@@ -376,7 +384,7 @@ const EdictNews = ({data}) => {
                                         startIcon={<CancelIcon />}
                                         onClick={volverAlMenu}
                                     >
-                                        Cancel
+                                        Cancelar
                                     </Button>
                                     <Button
                                         type="submit"
@@ -386,7 +394,7 @@ const EdictNews = ({data}) => {
                                         size="small"
                                         startIcon={<SaveIcon />}
                                     >
-                                        Save changes
+                                        Guardar cambios
                                     </Button>
                                 </div>
                                 <br/><br/><br/><br/>
@@ -405,7 +413,7 @@ EdictNews.getInitialProps = async (ctx) => {
       // Esta parte la cambiare cuando modifique el backend
       const respuesta = await axiosBackendCliente.post('/api/noticias/id/', { _id : id });
       const data = respuesta.data;
-      console.log(data);
+      console.log(data)
       return {data}
     } catch (error) {
       const data = null;

@@ -11,8 +11,6 @@ import { Markup } from 'interweave';
 
 const NewsPage = ({data}) => {
 
-  console.log(data);
-
   // Debo cambiar los enlaces luego
   const link = `https://news.com/news/${data._id}`;
   const shareOnFacebook = `https://www.facebook.com/sharer/sharer.php?u=https%3A//news.com/news/${data._id}`;
@@ -23,18 +21,18 @@ const NewsPage = ({data}) => {
   }
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Augosto",
+    "Septiember",
+    "Octubre",
+    "Noviembre",
+    "Deciembre",
   ];
 
   const date = new Date(data.fecha);
@@ -62,7 +60,7 @@ const NewsPage = ({data}) => {
                       {data.video == "null"
                       ?
                         (
-                          <Image width={1000} height={562} src={data.img} alt="imagen" />
+                          <Image width={570} height={320} src={data.img} alt="imagen" />
                         )
                       :
                         (
