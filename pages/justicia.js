@@ -4,6 +4,7 @@ import Head from 'next/head';
 import axiosClient from '../config/axios';
 import News from '../components/News';
 import Processing from '../components/Processing';
+import AdsComputadora from '../components/AdsComputadora';
 
 const Justice = () => {
     const [ loading, setLoading ] = useState(true);
@@ -52,9 +53,10 @@ const Justice = () => {
           <div className="inicio">
             <div className="sub-inicio">
                 <div className="sub-cuerpo mtop">
-                  { loading ? <Processing processText={"Cargando..."}/> : <News data = {data} tipo="Justice"/> }
+                  { loading ? <Processing processText={"Cargando..."}/> : <News data = {data} tipo="Justicia"/> }
                 </div>
             </div>
+            <AdsComputadora />
           </div>
       </Container> 
     );

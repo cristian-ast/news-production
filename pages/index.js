@@ -5,6 +5,7 @@ import axiosClient from '../config/axios';
 import News from '../components/News';
 import Processing from '../components/Processing';
 import Image from 'next/image';
+import AdsComputadora from '../components/AdsComputadora';
 
 export default function Home() {
 
@@ -52,7 +53,7 @@ export default function Home() {
           <div className="portada">
             <br/>
             <div className="contenido">
-              <Image width={900} height={600} src="/img/coverPage.jpg" className="imglogo" alt="logo"/>
+              <Image width={600} height={400} src="/img/coverPage.jpg" className="imglogo" alt="logo"/>
             </div>
             <div className="contenerdorTextos">
               <div className="textos">
@@ -64,6 +65,7 @@ export default function Home() {
             { loading ? <Processing processText={"Cargando..."}/> : <News data = {data} tipo="inicio"/>}
           </div>
         </div>
+        <AdsComputadora />
       </div>
     </Container>
   )

@@ -8,6 +8,8 @@ import copy from 'copy-to-clipboard';
 import axiosClient from '../../config/axios';
 import Image from 'next/image';
 import { Markup } from 'interweave';
+import AdsComputadora from '../../components/AdsComputadora';
+import AdsNew from '../../components/AdsNew';
 
 const NewsPage = ({data}) => {
 
@@ -100,8 +102,10 @@ const NewsPage = ({data}) => {
                     <div className="cuerpo--noticias--desarrollo">
                       <Markup content={data.cuerpo[0]} />
                     </div>
+                    <AdsNew/>
                   </div>
               </div>
+              <AdsComputadora/>
           </div>
       </Container> 
   );

@@ -4,6 +4,7 @@ import Head from 'next/head';
 import axiosClient from '../config/axios';
 import News from '../components/News';
 import Processing from '../components/Processing';
+import AdsComputadora from '../components/AdsComputadora';
 
 const Sports = () => {
 
@@ -54,9 +55,10 @@ const Sports = () => {
           <div className="inicio">
             <div className="sub-inicio">
                 <div className="sub-cuerpo mtop">
-                  { loading ? <Processing processText={"Cargando..."}/> : <News data = {data} tipo="Sports"/> }
+                  { loading ? <Processing processText={"Cargando..."}/> : <News data = {data} tipo="Deportes"/> }
                 </div>
             </div>
+            <AdsComputadora />
           </div>
       </Container> 
     );

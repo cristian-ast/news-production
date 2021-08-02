@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Container from '../components/Container';
+import AdsComputadora from '../components/AdsComputadora';
 
 const PrivacyPolicies = () => {
     return (
@@ -45,6 +46,7 @@ const PrivacyPolicies = () => {
                         </div>
                     </div>
                 </div>
+                <AdsComputadora />
             </div>
         </Container> 
     );
