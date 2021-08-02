@@ -29,13 +29,11 @@ const AdsComputadora = () => {
                 {BaseDatos ? (
                     <Fragment> {
                         BaseDatos.map( (anuncio) => (
-                            <Fragment>
-                                <Ads
-                                    img = {anuncio.img} 
-                                    url = {anuncio.url}
-                                    key = {anuncio.titulo}
-                                />
-                            </Fragment>
+                            <Ads
+                                img = {anuncio.img} 
+                                url = {anuncio.url}
+                                key = {anuncio.titulo}
+                            />
                         ))
                     }</Fragment>
                 ) : null}
