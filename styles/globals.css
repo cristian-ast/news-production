@@ -427,10 +427,6 @@ a {
   display: none;
 }
 
-.Ncuerpo--noticias--desarrollo {
-  display: block;
-}
-
 .Ncontenedor--noticias {
   display: block;
 }
@@ -490,6 +486,10 @@ a {
   max-width: 570px;
 }
 
+.Ncuerpo--noticias--desarrollo {
+  display: flex;
+}
+
 @media only screen and (min-width: 420px) {
   .cuerpo--noticias--video {
     margin-top: 30px;
@@ -520,8 +520,8 @@ a {
 .cuerpo--noticias--desarrollo {
   padding-left: 25px;
   padding-right: 25px;
-  width: 100%;
   text-align: justify;
+  width: 65%;
 }
 
 .cuerpo--noticias--desarrollo--parrafo {

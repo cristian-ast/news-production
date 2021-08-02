@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { useContext, useEffect } from 'react';
 import Container from '../../components/Container';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkIcon from '@material-ui/icons/Link';
@@ -10,12 +10,23 @@ import Image from 'next/image';
 import { Markup } from 'interweave';
 import AdsComputadora from '../../components/AdsComputadora';
 import AdsNew from '../../components/AdsNew';
+import { AuthContext } from '../../context/AuthContext';
+import EditIcon from '@material-ui/icons/Edit';
 
 const NewsPage = ({data}) => {
 
+  const { Auth, usuarioAutenticado } = useContext(AuthContext);
+
+    useEffect(() => {
+      usuarioAutenticado("noticia");
+      console.log(Auth);
+    // eslint-disable-next-line
+    }, []);
+
   // Debo cambiar los enlaces luego
-  const link = `https://news.com/news/${data._id}`;
-  const shareOnFacebook = `https://www.facebook.com/sharer/sharer.php?u=https%3A//news.com/news/${data._id}`;
+  const link = `https://somossfm.com/noticia/${data._id}`;
+  const linkEditar = `https://somossfm.com/edictNews/${data._id}`;
+  const shareOnFacebook = `https://www.facebook.com/sharer/sharer.php?u=https%3A//https://somossfm.com/${data._id}`;
   
   const clickCopy = () => {
       copy(link);
@@ -81,7 +92,7 @@ const NewsPage = ({data}) => {
                                     variant="contained"
                                     startIcon={<FacebookIcon/>}
                                 >
-                                    Share
+                                   Compartir
                                 </Button>
                             </a>
                             <div className="contenedor-info-boton">
@@ -92,9 +103,21 @@ const NewsPage = ({data}) => {
                                     startIcon={<LinkIcon/>}
                                     onClick={clickCopy}
                                 >
-                                    Copy link
+                                    Copiar
                                 </Button>
                             </div>
+                            {Auth.autenticado ? (
+                              <a href={linkEditar} target="_blanck" className="contenedor-info-boton">
+                                <Button
+                                    className="z-index-b contenedor-info-noticia-cuerpo-botones"
+                                    size="small"
+                                    variant="contained"
+                                    startIcon={<EditIcon/>}
+                                >
+                                  Editar
+                                </Button>
+                              </a>
+                            ) : null}
                           </div>
                       </div>
                   </div>
