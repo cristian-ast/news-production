@@ -24,7 +24,7 @@ const NewsPage = ({data}) => {
     }, []);
 
   // Debo cambiar los enlaces luego
-  const link = `https://somossfm.com/noticia/${data._id}`;
+  const link = `https://somossfm.com/noticias/${data._id}`;
   const linkEditar = `https://somossfm.com/edictNews/${data._id}`;
   const shareOnFacebook = `https://www.facebook.com/sharer/sharer.php?u=https%3A//https://somossfm.com/${data._id}`;
   
