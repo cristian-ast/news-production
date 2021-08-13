@@ -19,7 +19,6 @@ const NewsPage = ({data}) => {
 
     useEffect(() => {
       usuarioAutenticado("noticia");
-      console.log(Auth);
     // eslint-disable-next-line
     }, []);
 
