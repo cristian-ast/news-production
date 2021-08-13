@@ -8,7 +8,7 @@ import Image from 'next/image';
 import AdsComputadora from '../components/AdsComputadora';
 
 export default function Home() {
-
+  //OK
   const [ loading, setLoading ] = useState(true);
   const [ data, setData ] = useState([]);
 
