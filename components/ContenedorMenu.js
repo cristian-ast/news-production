@@ -64,6 +64,7 @@ const ContenedorMuenu = ({nombre, email}) => {
                         variant="contained"
                         color="primary"
                         startIcon={<AddCircleOutlineIcon />}
+                        disabled="true"
                     >
                         Crear anuncio
                     </Button>  
@@ -75,6 +76,7 @@ const ContenedorMuenu = ({nombre, email}) => {
                         size="small"
                         variant="contained"
                         startIcon={<EditIcon />}
+                        disabled="true"
                     >
                         Editar anuncio
                     </Button>  
