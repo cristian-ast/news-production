@@ -210,20 +210,6 @@ const LogIn = () => {
                                 {mostrarAlerta.mostrar ? <div className="mostrarAlerta">{mostrarAlerta.description}</div> : null}
                             </div>      
                         </div> 
-                        <div>
-                            <br/><br/>
-                            <h2>O crea una cuenta</h2>
-                            <Link href="/signup">
-                                <Button
-                                    size="small"
-                                    variant="contained"
-                                    startIcon={<LaunchIcon/>}
-                                >
-                                    Crear cuenta
-                                </Button>
-                            </Link>
-                            <br/><br/>
-                        </div>
                     </div>
                 </div>
             </div>}

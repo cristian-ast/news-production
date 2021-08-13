@@ -17,7 +17,7 @@ const SignUp = (props) => {
     const { Auth, usuarioAutenticado, GuardarAuth } = useContext(AuthContext);
 
     useEffect(() => {        
-        usuarioAutenticado("signup");
+        usuarioAutenticado("menu");
 
     // eslint-disable-next-line
     }, []);
@@ -243,22 +243,7 @@ const SignUp = (props) => {
                                 {mostrarAlerta.mostrar ? <div className="mostrarAlerta">{mostrarAlerta.description}</div> : null}
                             </div>      
                         </div> 
-                        <div>
-                            <br/><br/>
-                            <h2>O inicia sección en tu cuenta</h2>
-                            <Link href="/login">
-                                <Button
-                                    size="small"
-                                    variant="contained"
-                                    startIcon={<LaunchIcon/>}
-                                >
-                                    Iniciar sección
-                                </Button>
-                            </Link>
-                            <br/><br/>
-                        </div>
                     </div>
-                    
                 </div>
             </div>}
         </ContainerForAuth>
