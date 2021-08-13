@@ -180,12 +180,15 @@ const CreateNews = (props) => {
             const respuesta = await axiosBackendCliente.post('/api/noticias', datos);
             setProcessText("Noticia guardada de manera exitosa");
             guardarNuevaNoticia(respuesta.data);
+            console.log(respuesta.data);
 
             setTimeout(() => {
                 guardarInfoNoticia(true);
             }, 1000);
 
-            Router.push(`https://somossfm.com/noticias/${nuevaNoticia._id}`);
+
+            Router.push('/');
+            //Router.push(`https://somossfm.com/noticias/${id}`);
 
         } catch (error) {
 
