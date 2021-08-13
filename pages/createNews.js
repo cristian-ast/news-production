@@ -185,7 +185,7 @@ const CreateNews = (props) => {
                 guardarInfoNoticia(true);
             }, 1000);
 
-            Router.push('/');
+            Router.push(`https://somossfm.com/noticias/${nuevaNoticia._id}`);
 
         } catch (error) {
 
