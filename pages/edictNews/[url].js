@@ -192,7 +192,7 @@ const EdictNews = ({data}) => {
             setProcessText("Noticia guardada de manera exitosa");
 
             setTimeout(() => {
-                Router.push(`https://cristian-news.vercel.app/${id}`);
+                Router.push(`https://somossfm.com/noticias/${id}`);
             }, 1000);
 
         } catch (error) {
