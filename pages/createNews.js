@@ -180,7 +180,6 @@ const CreateNews = (props) => {
             const respuesta = await axiosBackendCliente.post('/api/noticias', datos);
             setProcessText("Noticia guardada de manera exitosa");
             guardarNuevaNoticia(respuesta.data);
-            console.log(respuesta.data);
 
             setTimeout(() => {
                 guardarInfoNoticia(true);

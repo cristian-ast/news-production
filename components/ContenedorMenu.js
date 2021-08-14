@@ -57,14 +57,13 @@ const ContenedorMuenu = ({nombre, email}) => {
                     </Button>  
                 </Link>
                 <br/>
-                <Link href="/createAd">
+                <Link href="/crearAnuncio">
                     <Button
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
                         size="small"
                         variant="contained"
                         color="primary"
                         startIcon={<AddCircleOutlineIcon />}
-                        disabled="true"
                     >
                         Crear anuncio
                     </Button>  
