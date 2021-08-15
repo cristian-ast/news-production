@@ -2,21 +2,21 @@ import Button from '@material-ui/core/Button';
 import { axiosBackendCliente } from '../config/axios';
 import Router from 'next/router';
 
-const AdvertenciaBorrarAnuncio = ({noticia, guardarBorrar, guardarNoticiaActiva, guardarProcesando, guardarTextoDeProceso}) => {
+const AdvertenciaBorrarAnuncio = ({noticia, guardarBorrar, guardaranuncioActivo, guardarProcesando, guardarTextoDeProceso}) => {
 
     const onClickBorrar = async () => {
         guardarBorrar(false);
-        guardarNoticiaActiva(null);
+        guardaranuncioActivo(null);
         guardarProcesando(true);
 
         try {
             const id = noticia._id;
-            const respuesta = await axiosBackendCliente.delete(`/api/noticias/${id}`);
+            const respuesta = await axiosBackendCliente.delete(`/api/anuncios/${id}`);
 
             guardarTextoDeProceso(respuesta.data.msg);
 
             setTimeout(() => {
-                Router.push('/');
+                Router.push('/menu');
             }, 1000);
 
         } catch (error) {
@@ -28,14 +28,14 @@ const AdvertenciaBorrarAnuncio = ({noticia, guardarBorrar, guardarNoticiaActiva,
             }
 
             setTimeout(() => {
-                Router.push('/');
+                Router.push('/menu');
             }, 1000);
         }
     }
 
     const onClickCancelar = () => {
         guardarBorrar(false)
-        guardarNoticiaActiva(null)
+        guardaranuncioActivo(null)
     }
 
     return (

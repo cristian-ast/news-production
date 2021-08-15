@@ -82,7 +82,7 @@ const EditarAnuncio = () => {
 
         try {
             
-            const resultado = await clienteAxios.post('/api/noticias/titulo/', buscarPor);
+            const resultado = await clienteAxios.post('/api/Anuncios/buscar/', buscarPor);
             
             guardarTextoDeProceso("Cargando datos");
 

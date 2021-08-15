@@ -69,13 +69,12 @@ const ContenedorMuenu = ({nombre, email}) => {
                     </Button>  
                 </Link>
                 <br/>
-                <Link href="/edictAd">
+                <Link href="/editarAnuncio">
                     <Button
                         className="PanelBuscadorVerNoticia-img-botones z-index-b with-boton-menu"
                         size="small"
                         variant="contained"
                         startIcon={<EditIcon />}
-                        disabled={true}
                     >
                         Editar anuncio
                     </Button>  
