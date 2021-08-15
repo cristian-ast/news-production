@@ -2,17 +2,18 @@ import React, { useState, useEffect, Fragment, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
-import clienteAxios from '../config/axios';
-import Processing from '../components/Processing';
+import Processing from '../../components/Processing';
 import Head from 'next/head';
-import ContainerForAuth from '../components/ContainerForAuth';
+import ContainerForAuth from '../../components/ContainerForAuth';
 import Image from 'next/image';
-import { axiosBackendCliente } from '../config/axios';
-import { AuthContext } from '../context/AuthContext';
+import { axiosBackendCliente } from '../../config/axios';
+import { AuthContext } from '../../context/AuthContext';
 import Router from 'next/router';
-import Spinner from '../components/Spinner';
+import Spinner from '../../components/Spinner';
 
-const CrearAnuncio = (props) => {
+const EdictAds = ({data}) => {
+
+    console.log(data);
 
     const { Auth, usuarioAutenticado } = useContext(AuthContext);
 
@@ -26,9 +27,10 @@ const CrearAnuncio = (props) => {
     const  [ spinnerImage, setSpinnerImage ] = useState(false);
 
     const [nuevaNoticia, guardarNuevaNoticia] = useState({
-        titulo : "",
-        url : "No",
-        img : ""
+        titulo : data.titulo,
+        url : data.url,
+        img : data.img,
+        _id : data._id
     });
 
     const onChange = e => {
@@ -51,8 +53,60 @@ const CrearAnuncio = (props) => {
     // eslint-disable-next-line
     }, [archivos]);
 
+    // Revisar el URL
+    // revisar cuantos parrafos tiene la noticia
+    let URLInicial= "";
+
+    for (let i = 0; i < 35; i++) {
+        URLInicial += nuevaNoticia.url.charAt(i);
+    }
+
+    let estadoInicialTipo;
+    let whatsappNicial;
+    let whatsappTinicial;
+    let estadoIniciaWeb;
+    
+    if (nuevaNoticia.url === "No") {
+        estadoInicialTipo = "No";
+        whatsappNicial = "";
+        whatsappTinicial = "";
+        estadoIniciaWeb = "";
+
+    } else if(URLInicial === "https://api.whatsapp.com/send?phone") {
+        
+        
+        estadoInicialTipo = "WhatsApp";
+        estadoIniciaWeb = "";
+        let numeroW = "";
+        let textoW = "";
+ 
+        // decodeURI()
+        // https://api.whatsapp.com/send?phone=18093158252&text=Buenas%20Somos%20SFM.%20Deseo%20conocer%20m%C3%A1s%20sobre%20los%20anuncios%20en%20su%20portal%20de%20noticias.
+        
+        // primero extraigo el numero de la url
+        for (let i = 0; i < nuevaNoticia.url.length; i++) {
+            
+            if (( i > 36) && ( i < 47 )) {
+                numeroW += nuevaNoticia.url.charAt(i);
+            }
+            
+            if ( i > 52 ) {
+                textoW += nuevaNoticia.url.charAt(i);
+            }
+        }
+
+        whatsappNicial = parseInt(numeroW);
+        whatsappTinicial = decodeURI(textoW);
+
+    } else {
+        estadoInicialTipo = "Web";
+        whatsappNicial = "";
+        whatsappTinicial = "";
+        estadoIniciaWeb = nuevaNoticia.url;
+    }
+
     const [ tipoEnlace, guardarTipoEnlace ] = useState({
-        tipo : "No"
+        tipo : estadoInicialTipo
     });
 
     const onChangeTipoEnlace = e => {
@@ -73,12 +127,12 @@ const CrearAnuncio = (props) => {
     }
 
     const [whatsAppMS, guardarWhatsAppMS ] = useState({
-        whatsappN : "",
-        whatsappT : ""
+        whatsappN : whatsappNicial,
+        whatsappT : whatsappTinicial
     });
 
     const [ enlace, setEnlace ] = useState({
-        url : ""
+        url : estadoIniciaWeb
     })
 
     const onChangeWM = e => {
@@ -169,23 +223,22 @@ const CrearAnuncio = (props) => {
         guardarProcesando(true);
 
         try {
-            await axiosBackendCliente.post('/api/anuncios', datos);
+            //await axiosBackendCliente.post('/api/anuncios', datos);
+            const id = datos._id;
+            await axiosBackendCliente.put(`/api/anuncios/${id}`, datos);
+
             setProcessText("Anuncio guardado exitosamente");
 
             setTimeout(() => {
-                Router.push('/')
+                Router.push('/menu')
             }, 1000);
 
         } catch (error) {
-
-            if(error.response.data.msg) {
-                setProcessText(error.response.data.msg);
-            } else {
-                setProcessText("Error, intentalo de nuevo");
-            }
+            setProcessText("Error, intentalo de nuevo");
+            
 
             setTimeout(() => {
-                Router.isReadypush('/');
+                Router.isReadypush('/menu');
             }, 1000);
         }
     }
@@ -194,7 +247,7 @@ const CrearAnuncio = (props) => {
         <ContainerForAuth>
             <Head>
                 <meta charset="utf-8" />
-                <title>Somos SFM - Crea un anuncio </title>
+                <title>Somos SFM - Editar Anuncio </title>
                 <meta name="description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -202,11 +255,11 @@ const CrearAnuncio = (props) => {
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
                 <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet" />
                 {/*Open Graph / Facebook*/}
-                <meta property="og:title" content="Somos SFM - Crea un anuncio"/>
+                <meta property="og:title" content="Somos SFM - Editar Anuncio"/>
                 <meta property="og:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana" />
                 <meta property="og:image" content="/img/logo.jpeg"></meta>
                 {/* Twitter */}
-                <meta property="twitter:title" content="Somos SFM - Crea un anuncio"/>
+                <meta property="twitter:title" content="Somos SFM - Editar Anuncio"/>
                 <meta property="twitter:description" content="Página de noticias en la ciudad de San Francisco de Macorís, República Domnicana"/>
                 <meta property="twitter:image" content="/img/logo.jpeg"></meta>
             </Head>
@@ -214,13 +267,14 @@ const CrearAnuncio = (props) => {
         {procesando ? (<Processing processText={processText} />) : 
         <div className="editor-noticias" >
             <div className="contenedor-editor">
-                <h2 className="marginCuerpoTo">Crear Nuevo Anuncio</h2>
+                <h2 className="marginCuerpoTo">Editar Anuncio</h2>
                 <form
                         onSubmit={onSubmit}
                     >
                         <div className="panel-editor-campos">
                             <label htmlFor="titulo">Título :</label>
                             <input
+                                value={nuevaNoticia.titulo}
                                 className="campo-form campo-form-with-100"
                                 type="text"
                                 id="titulo"
@@ -237,6 +291,7 @@ const CrearAnuncio = (props) => {
                             <label htmlFor="autor">Enlace :</label>
                             <select 
                                 id="tipo" 
+                                value={tipoEnlace.tipo}
                                 onChange={onChangeTipoEnlace}
                                 name="tipo"
                                 className="siVideo-campo-form"
@@ -252,6 +307,7 @@ const CrearAnuncio = (props) => {
                                 <div className="panel-editor-campos ">
                                     <label htmlFor="url">Enlace a Página Web :</label>
                                     <input
+                                        value={enlace.url}
                                         className="campo-form campo-form-with-100"
                                         type="text"
                                         id="url"
@@ -272,6 +328,7 @@ const CrearAnuncio = (props) => {
                                     </div>
                                     <label htmlFor="whatsappN">Número (+1) :</label>
                                     <input
+                                        value={whatsAppMS.whatsappN}
                                         className="campo-form campo-form-with-70px"
                                         type="number"
                                         id="whatsappN"
@@ -284,6 +341,7 @@ const CrearAnuncio = (props) => {
                                     <label htmlFor="whatsappT">Mensaje :</label>
                                     <textarea
                                         style={{resize: "none"}}
+                                        value={whatsAppMS.whatsappT}
                                         className="campo-form campo-textarea campo-form-with-100"
                                         id="whatsappT"
                                         name="whatsappT"
@@ -305,7 +363,6 @@ const CrearAnuncio = (props) => {
                                     name="files" 
                                     accept=".pdf,.jpg,.png,.jpeg"
                                     onChange={ (e) => subirArchivos(e.target.files)}
-                                    required
                                 />
                                 {spinnerImage ? (
                                     <div className="contenedorSpinner">
@@ -359,4 +416,17 @@ const CrearAnuncio = (props) => {
     );
 }
 
-export default CrearAnuncio;
+EdictAds.getInitialProps = async (ctx) => {
+
+    try {
+      const id = ctx.query.url;
+      const respuesta = await axiosBackendCliente.post('/api/anuncios/buscar', { _id : id });
+      const data = respuesta.data[0];
+      return {data}
+    } catch (error) {
+      const data = null;
+      return {data}
+    }
+}
+
+export default EdictAds;

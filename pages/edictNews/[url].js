@@ -413,7 +413,6 @@ EdictNews.getInitialProps = async (ctx) => {
       // Esta parte la cambiare cuando modifique el backend
       const respuesta = await axiosBackendCliente.post('/api/noticias/id/', { _id : id });
       const data = respuesta.data;
-      console.log(data)
       return {data}
     } catch (error) {
       const data = null;

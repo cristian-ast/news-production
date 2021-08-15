@@ -75,7 +75,7 @@ const ContenedorMuenu = ({nombre, email}) => {
                         size="small"
                         variant="contained"
                         startIcon={<EditIcon />}
-                        disabled="true"
+                        disabled={true}
                     >
                         Editar anuncio
                     </Button>  
