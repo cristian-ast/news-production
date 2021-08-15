@@ -227,7 +227,7 @@ const CrearAnuncio = (props) => {
                                 name="titulo"
                                 placeholder="Escriba el título de la noticia..."
                                 onChange={onChange}
-                                autocomplete="off"
+                                autoComplete="off"
                                 required
                             />
                         </div>
