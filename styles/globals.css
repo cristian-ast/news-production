@@ -729,6 +729,11 @@ a {
   box-shadow: 10px 10px 22px -15px rgba(0,0,0,0.75);
 }
 
+.PanelBuscadorVerNoticia-img-buttons {
+  display: flex;
+  align-items: center;
+}
+
 .PanelBuscadorVerNoticia-imagen {
   width: 100px;
 }

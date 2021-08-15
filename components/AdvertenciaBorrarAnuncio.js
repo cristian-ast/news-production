@@ -2,21 +2,21 @@ import Button from '@material-ui/core/Button';
 import { axiosBackendCliente } from '../config/axios';
 import Router from 'next/router';
 
-const AdvertenciaBorrarNoticia = ({noticia, guardarBorrar, guardaranuncioActivo, guardarProcesando, guardarTextoDeProceso}) => {
+const AdvertenciaBorrarAnuncio = ({noticia, guardarBorrar, guardarNoticiaActiva, guardarProcesando, guardarTextoDeProceso}) => {
 
     const onClickBorrar = async () => {
         guardarBorrar(false);
-        guardaranuncioActivo(null);
+        guardarNoticiaActiva(null);
         guardarProcesando(true);
 
         try {
             const id = noticia._id;
-            const respuesta = await axiosBackendCliente.delete(`/api/anuncios/${id}`);
+            const respuesta = await axiosBackendCliente.delete(`/api/noticias/${id}`);
 
             guardarTextoDeProceso(respuesta.data.msg);
 
             setTimeout(() => {
-                Router.push('/menu');
+                Router.push('/');
             }, 1000);
 
         } catch (error) {
@@ -28,14 +28,14 @@ const AdvertenciaBorrarNoticia = ({noticia, guardarBorrar, guardaranuncioActivo,
             }
 
             setTimeout(() => {
-                Router.push('/menu');
+                Router.push('/');
             }, 1000);
         }
     }
 
     const onClickCancelar = () => {
-        guardarBorrar(false);
-        guardaranuncioActivo(null);
+        guardarBorrar(false)
+        guardarNoticiaActiva(null)
     }
 
     return (
@@ -43,7 +43,7 @@ const AdvertenciaBorrarNoticia = ({noticia, guardarBorrar, guardaranuncioActivo,
             <div className="Contenedor-Procesando-advertencia">
                 
                 <div className="Contenedor-Procesando-advertencia-elcontenedor-de-vista-noticia">
-                <h3 className="Contenedor-Procesando-advertencia-text">¿Estas seguro de borrar esta noticia?</h3>
+                <h3 className="Contenedor-Procesando-advertencia-text">¿Estas seguro de borrar este anuncio?</h3>
                 <br/>
                 <br/>
                     <div 
@@ -84,4 +84,4 @@ const AdvertenciaBorrarNoticia = ({noticia, guardarBorrar, guardaranuncioActivo,
 }
 
 
-export default AdvertenciaBorrarNoticia;
+export default AdvertenciaBorrarAnuncio;

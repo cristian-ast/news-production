@@ -11,7 +11,6 @@ const AdsComputadora = () => {
         try {
           const respuesta = await axiosBackendCliente.get('/api/anuncios/');
           guardarBaseDatos(respuesta.data);
-          console.log(respuesta.data);
             
         } catch (error) {
           console.log(error);
