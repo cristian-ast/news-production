@@ -30,10 +30,13 @@ const Footer = () => {
                     </div>
                     <br/><br/>
                     <div className="despc">
-                        Dominican Republic
+                        República Dominicana.
                     </div>
                     <div className="despc">
                         Victor Manuel, 2021.
+                    </div>
+                    <div className="despc">
+                        <a href="https://www.instagram.com/cristian.ast/" target="_blank" rel="noreferrer">Esta págia fue programada por: Cristian Castro Astacio.</a>
                     </div>
                     <br/><br/>
                 </footer>
